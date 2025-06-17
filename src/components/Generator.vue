@@ -13,17 +13,22 @@ const remainingWords = computed(() => MAX_WORDS - wordCount.value) // Computed p
 
 // Function to update word count and enforce cap
 const handleInput = () => {
-  // Simple word count: split by spaces and filter out empty strings
-  const words = features.value.trim().split(/\s+/).filter(word => word.length > 0);
+  // A more robust word count:
+  // - matches sequences of word characters (letters, numbers, underscore)
+  // - handles hyphens within words (e.g., "high-quality")
+  // - filters out matches that are just punctuation or empty strings
+  const words = features.value.trim().match(/\b\w+([-']\w+)*\b/g) || []; // Matches words more accurately
+
   wordCount.value = words.length;
 
   // Enforce word cap: if over limit, truncate the text
   if (wordCount.value > MAX_WORDS) {
+    // Reconstruct the string from the first MAX_WORDS words
     features.value = words.slice(0, MAX_WORDS).join(' ');
     wordCount.value = MAX_WORDS; // Ensure count reflects truncation
   }
   errorMessage.value = ''; // Clear error on new input
-}
+};
 // --- End: New Word Count and Cap ---
 
 // State for handling the API response (this logic is the same)
