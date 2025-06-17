@@ -13,7 +13,7 @@ const generateContent = async () => {
   isLoading.value = true
   generatedText.value = ''
   
-  const apiUrl = 'https://mvp-flask-api.onrender.com/api/generate'
+  const apiUrl = '3.134.238.10/api/generate'
   
   // The payload now sends a 'features' key
   const payload = {

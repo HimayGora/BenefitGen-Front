@@ -9,7 +9,7 @@ const betaKey = ref('')
 const errorMessage = ref('') // New state to hold error messages
 
 const checkKey = async () => {
-  const apiUrl = 'https://mvp-flask-api.onrender.com/api/verify'
+  const apiUrl = '3.134.238.10/api/verify'
   errorMessage.value = '' // Clear previous errors
 
   try {
