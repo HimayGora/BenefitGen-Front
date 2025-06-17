@@ -82,6 +82,7 @@ const generateContent = async () => {
     features: featuresToSanitize // Send the sanitized version
   }
 
+  console.log('Payload being sent:', payload);
   try {
     const response = await axios.post(apiUrl, payload);
     generatedText.value = response.data.generatedText;
