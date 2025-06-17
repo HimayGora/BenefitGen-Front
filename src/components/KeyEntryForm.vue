@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../utils/api'
 
 // We need to declare the custom event this component can send
 const emit = defineEmits(['verificationSuccess'])
@@ -9,7 +10,7 @@ const betaKey = ref('')
 const errorMessage = ref('') // New state to hold error messages
 
 const checkKey = async () => {
-  const apiUrl = '3.134.238.10/api/verify'
+  const apiUrl = API_ENDPOINTS.verify()
   errorMessage.value = '' // Clear previous errors
 
   try {

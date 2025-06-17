@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../utils/api'
 
 // State for the new form input
 const features = ref('')
@@ -13,7 +14,7 @@ const generateContent = async () => {
   isLoading.value = true
   generatedText.value = ''
   
-  const apiUrl = '3.134.238.10/api/generate'
+  const apiUrl = API_ENDPOINTS.generate()
   
   // The payload now sends a 'features' key
   const payload = {
