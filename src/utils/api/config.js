@@ -1,14 +1,15 @@
-const RENDER_BASE = import.meta.env.VITE_ONRENDER
-const RENDER_IPS = import.meta.env.VITE_RENDER_IPS?.split(',') || []
+const PUBLIC_BACKEND_URL = import.meta.env.VITE_PUBLIC_BACKEND_URL;
 
 export function getApiEndpoint() {
+  // In development, connect to your local Flask backend
   if (import.meta.env.DEV) {
-    return `${RENDER_BASE}/api`
+    return 'http://localhost:5001/api'; 
   }
-
-  if (RENDER_IPS.length === 0) {
-    throw new Error('No Render IPs configured')
+  // In production (on Render), use the configured public backend URL
+  if (!PUBLIC_BACKEND_URL) {
+    // This error should ideally only happen if you forget to set the env var on Render
+    console.error('VITE_PUBLIC_BACKEND_URL is not set for production environment.');
+    throw new Error('Backend URL not configured.');
   }
-  const randomIndex = Math.floor(Math.random() * RENDER_IPS.length)
-  return `https://${RENDER_IPS[randomIndex]}/api`
+  return `${PUBLIC_BACKEND_URL}/api`;
 }
