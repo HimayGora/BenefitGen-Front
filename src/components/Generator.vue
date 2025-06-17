@@ -56,7 +56,7 @@ const generateContent = async () => {
 
     <div v-if="generatedText" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
       <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
-      <p class="text-gray-300 whitespace-pre-wrap bg-red-500">{{ generatedText }}</p>
+      <p class="text-gray-300 whitespace-pre-wrap ">{{ generatedText }}</p>
     </div>
 
   </div>
