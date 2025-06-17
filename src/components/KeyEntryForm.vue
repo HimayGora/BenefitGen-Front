@@ -57,6 +57,15 @@ const checkKey = async () => {
         </button>
       </div>
     </form>
+
+    <div class="bg-gray-800 shadow-md rounded-lg p-6 mt-6 text-center">
+      <p class="text-lg font-semibold text-gray-300 mb-2">
+        Need a demo or access key?
+      </p>
+      <p class="text-gray-400">
+        Please contact <a href="mailto:hsg@hsgportfolio.com" class="text-amber-400 hover:underline font-medium">hsg@hsgportfolio.com</a> to arrange one.
+      </p>
+    </div>
   </div>
 </template>
 
