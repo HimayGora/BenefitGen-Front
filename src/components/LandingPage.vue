@@ -15,6 +15,10 @@ useHead({
       name: 'description',
       content: 'Effortlessly translate product features into powerful benefit copy with our AI-powered generator. Perfect for marketers and founders looking to craft compelling copy that converts.',
     },
+    {
+      name: 'google-site-verification',
+      content: 'Lm3e4ux4vHfBq-8d8CbBmBBZFIq-FHevH08QR8k9sK8',
+    },
     // Open Graph Tags for social sharing
     {
       property: 'og:title',
@@ -28,10 +32,7 @@ useHead({
       property: 'og:url',
       content: 'https://generator.hsgportfolio.com',
     },
-    {
-      name: 'google-site-verification',
-      content: 'Lm3e4ux4vHfBq-8d8CbBmBBZFIq-FHevH08QR8k9sK8',
-    },
+    
   ],
 })
 </script>
