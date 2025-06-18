@@ -28,7 +28,10 @@ useHead({
       property: 'og:url',
       content: 'https://generator.hsgportfolio.com',
     },
-    
+    {
+      name: 'google-site-verification',
+      content: 'Lm3e4ux4vHfBq-8d8CbBmBBZFIq-FHevH08QR8k9sK8',
+    },
   ],
 })
 </script>
