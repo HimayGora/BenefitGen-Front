@@ -98,7 +98,6 @@ useHead({
           <a href="mailto:hsg@hsgportfolio.com" class="text-amber-400 hover:underline font-medium">hsg@hsgportfolio.com</a> 
           to request access or a free demo.
         </p>
-        <KeyEntryForm @verification-success="handleVerification" />
-    </section>
+        <KeyEntryForm />
   </div>
 </template>
