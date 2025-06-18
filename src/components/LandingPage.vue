@@ -12,10 +12,6 @@ useHead({
   title: 'AI Benefit Copy Generator | Convert Features to Benefits',
   meta: [
     {
-      name: 'google-site-verification',
-      content: 'Lm3e4ux4vHfBq-8d8CbBmBBZFIq-FHevH08QR8k9sK8',
-    },
-    {
       name: 'description',
       content: 'Effortlessly translate product features into powerful benefit copy with our AI-powered generator. Perfect for marketers and founders looking to craft compelling copy that converts.',
     },
