@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import KeyEntryForm from './components/KeyEntryForm.vue'
-import Generator from './components/Generator.vue' // Import the new component
+// Import your new LandingPage component
+import LandingPage from './components/LandingPage.vue' 
+import Generator from './components/Generator.vue'
 
 const isAuthenticated = ref(false)
 
@@ -12,7 +13,8 @@ const handleSuccessfulVerification = () => {
 
 <template>
   <div class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
-    <KeyEntryForm v-if="!isAuthenticated" @verification-success="handleSuccessfulVerification" />
+    
+    <LandingPage v-if="!isAuthenticated" @verification-success="handleSuccessfulVerification" />
 
     <Generator v-else />
 
