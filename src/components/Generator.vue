@@ -102,7 +102,7 @@ const generateContent = async () => {
 
 <template>
   <div class="w-full max-w-2xl">
-    <h1 class="text-3xl font-bold text-center mb-6 text-amber-400">Benefit Statement Generator</h1>
+    <h1 class="text-3xl font-bold text-center mb-6 text-amber-400">Benefit Copy Generator</h1>
     <form @submit.prevent="generateContent" class="bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
       
       <div class="mb-6">

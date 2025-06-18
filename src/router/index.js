@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '../components/LandingPage.vue'
 import Generator from '../components/Generator.vue'
-import CaseStudy from '../components/CaseStudy.vue'
+import CaseStudy from '../views/CaseStudy.vue'
 
 const routes = [
   {
