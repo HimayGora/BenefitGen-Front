@@ -29,6 +29,10 @@ useHead({
       property: 'og:url',
       content: 'https://generator.hsgportfolio.com',
     },
+    {
+      property: 'og:image',
+      content: 'https://generator.hsgportfolio.com/BFG.png',
+    },
     
   ],
 })
