@@ -99,5 +99,6 @@ useHead({
           to request access or a free demo.
         </p>
         <KeyEntryForm />
+    </section>
   </div>
 </template>
