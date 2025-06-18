@@ -1,22 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-// Import your new LandingPage component
-import LandingPage from './components/LandingPage.vue' 
-import Generator from './components/Generator.vue'
-
-const isAuthenticated = ref(false)
-
-const handleSuccessfulVerification = () => {
-  isAuthenticated.value = true
-}
+// No longer need to import components or manage isAuthenticated state here
 </script>
 
 <template>
   <div class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
-    
-    <LandingPage v-if="!isAuthenticated" @verification-success="handleSuccessfulVerification" />
-
-    <Generator v-else />
-
+    <router-view />
   </div>
 </template>

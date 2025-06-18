@@ -2,26 +2,27 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api'
+import { useRouter } from 'vue-router' // 1. Import useRouter
 
-// We need to declare the custom event this component can send
-const emit = defineEmits(['verificationSuccess'])
+// We no longer need to emit an event
+// const emit = defineEmits(['verificationSuccess'])
 
 const betaKey = ref('')
-const errorMessage = ref('') // New state to hold error messages
+const errorMessage = ref('')
+const router = useRouter() // 2. Get the router instance
 
 const checkKey = async () => {
   const apiUrl = API_ENDPOINTS.verify()
-  errorMessage.value = '' // Clear previous errors
+  errorMessage.value = ''
 
   try {
     const response = await axios.post(apiUrl, { key: betaKey.value });
 
     if (response.data.status === 'ok') {
-      // On success, instead of an alert, we emit an event to the parent
-      emit('verificationSuccess')
+      // 3. Navigate to the generator page on success
+      router.push('/generator')
     }
   } catch (error) {
-    // On failure, we set the error message to display it to the user
     console.error('Error verifying key:', error);
     errorMessage.value = 'Invalid key. Please try again.'
   }
@@ -58,8 +59,4 @@ const checkKey = async () => {
       </div>
     </form>
   </div>
-    
 </template>
-
-<style scoped>
-</style>
