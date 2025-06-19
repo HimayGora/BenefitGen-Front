@@ -52,7 +52,7 @@ const checkKey = async () => {
       <div class="flex items-center justify-center">
         <button 
           type="submit"
-          class="bg-amber-500 hover:bg-amber-600 text-stone-500 font-bold py-2 px-6 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300"
+          class="bg-amber-500 hover:bg-amber-600 text-rose-500 font-bold py-2 px-6 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300"
         >
           Verify Key
         </button>
