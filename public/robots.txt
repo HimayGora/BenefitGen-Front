@@ -1,0 +1,8 @@
+# Block all bots from functional pages
+User-agent: *
+Disallow: /login
+Disallow: /register
+Disallow: /generator
+
+# Point bots to the sitemap to find all public pages
+Sitemap: https://generator.hsgportfolio.com/sitemap.xml
