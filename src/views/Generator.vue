@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router';
+import { useHead } from '@vueuse/head';
 
 const features = ref('')
 const isLoading = ref(false)
@@ -61,7 +62,9 @@ const handleLogout = async () => {
         errorMessage.value = 'Failed to log out. Please try again.';
     }
 }
-
+useHead({
+  title: 'Generator | BenefitGen'
+});
 </script>
 
 <template>

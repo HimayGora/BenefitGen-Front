@@ -4,6 +4,7 @@ import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router'
 import { useAuth } from '../store/auth' // ## NEW: Import useAuth
+import { useHead } from '@vueuse/head';
 
 const email = ref('')
 const password = ref('')
@@ -37,7 +38,9 @@ const handleLogin = async () => {
     }
   }
 }
-
+useHead({
+  title: 'Login | BenefitGen'
+});
 </script>
 
 <template>

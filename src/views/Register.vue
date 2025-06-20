@@ -1,8 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { API_ENDPOINTS } from '../utils/api'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue';
+import axios from 'axios';
+import { API_ENDPOINTS } from '../utils/api';
+import { useRouter } from 'vue-router';
+import { useHead } from '@vueuse/head';
 
 const email = ref('') // Changed from username
 const password = ref('')
@@ -35,7 +36,9 @@ const handleRegister = async () => {
     }
   }
 }
-
+useHead({
+  title: 'Register | BenefitGen'
+});
 </script>
 
 <template>
