@@ -2,6 +2,8 @@
 import { useHead } from '@vueuse/head'
 import { RouterLink } from 'vue-router';
 
+const { isAuthenticated, email, handleLogout } = useAuth();
+
 // This component no longer needs to handle emits for navigation
 // The KeyEntryForm will handle it directly with the router
 
@@ -93,16 +95,23 @@ useHead({
     
     <section id="get-access" class="py-12">
         <h2 class="text-3xl font-bold text-center mb-8 text-white">Ready to Experience the Power?</h2>
-        <p class="text-center text-gray-400 mb-8">
+        <div v-if="!isAuthenticated" class="space-x-4">
+          <p class="text-center text-gray-400 mb-8">
           Get started by creating an account or logging in.
-        </p>
-        <div class="flex items-center justify-center space-x-4">
+          </p>
+          <div class="flex items-center justify-center space-x-4">
             <RouterLink to="/login" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
                 Login
             </RouterLink>
             <RouterLink to="/register" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
                 Register
             </RouterLink>
+          </div>
+        </div>
+        <div div v-else class="flex items-center space-x-4">
+          <RouterLink to="/generator" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
+                Go to App
+          </RouterLink>
         </div>
     </section>
   </div>
