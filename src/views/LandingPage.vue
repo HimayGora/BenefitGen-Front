@@ -1,6 +1,7 @@
 <script setup>
 import { useHead } from '@vueuse/head'
 import { RouterLink } from 'vue-router';
+import { useAuth } from '../store/auth';
 
 const { isAuthenticated, email, handleLogout } = useAuth();
 
