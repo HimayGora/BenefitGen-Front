@@ -35,19 +35,7 @@ const handleRegister = async () => {
     }
   }
 }
-useHead({
-  title: 'AI Benefit Copy Generator | Convert Features to Benefits',
-  meta: [
-    {
-      name: 'description',
-      content: 'Effortlessly translate product features into powerful benefit copy with our AI-powered generator. Perfect for marketers and founders looking to craft compelling copy that converts.',
-    },
-    { property: 'og:title', content: 'AI Benefit Copy Generator | Convert Features to Benefits' },
-    { property: 'og:description', content: 'Turn your product features into marketing copy that sells. Get beta access to our AI-powered generator.' },
-    { property: 'og:url', content: 'https://generator.hsgportfolio.com' },
-    { property: 'og:image', content: 'https://generator.hsgportfolio.com/BFG.png' },
-  ],
-})
+
 </script>
 
 <template>
