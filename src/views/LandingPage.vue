@@ -98,18 +98,20 @@ useHead({
         <h2 class="text-3xl font-bold text-center mb-8 text-white">Ready to Experience the Power?</h2>
         <div v-if="!isAuthenticated" class="space-x-4">
           <p class="text-center text-gray-400 mb-8">
-          Get started by creating an account or logging in.
+          🚀 Start turning features into results — create your free account now.  
+          Already have one? Log in below.
           </p>
           <div class="flex items-center justify-center space-x-4">
             <RouterLink to="/login" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-                Login
+                Log In to Continue
             </RouterLink>
             <RouterLink to="/register" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-                Register
+                Start Free — No Credit Card
             </RouterLink>
           </div>
         </div>
         <div v-else class="flex items-center justify-center space-x-4">
+          💡 Turn your features into customer-winning copy — you're one click away.
           <RouterLink to="/generator" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
                 Go to App
           </RouterLink>
