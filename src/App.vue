@@ -1,5 +1,5 @@
 <script setup>
-// No longer need to import components or manage isAuthenticated state here
+// This component now simply provides a layout and the router outlet.
 </script>
 
 <template>
