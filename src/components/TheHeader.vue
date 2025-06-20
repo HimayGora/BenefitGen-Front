@@ -23,7 +23,7 @@ const { isAuthenticated, username, handleLogout } = useAuth();
         </div>
 
         <div v-else class="flex items-center space-x-4">
-          <span class="text-gray-300">Welcome, {{ username }}</span>
+          <span class="text-gray-300">Welcome, {{ email }}</span>
           <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
             Go to App
           </RouterLink>

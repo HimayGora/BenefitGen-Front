@@ -6,44 +6,49 @@ import { useRouter } from 'vue-router';
 
 // Reactive state variables
 const isAuthenticated = ref(false);
-const username = ref('');
+const email = ref(''); // ## FIXED: Changed from 'username' to 'email'
 
 // A central place to manage authentication logic
 export function useAuth() {
   const router = useRouter();
 
-  // Checks the backend to see if a session is still valid
+  // ## NEW: Function to be called after a successful login ##
+  const setAuthenticated = (userEmail) => {
+    isAuthenticated.value = true;
+    email.value = userEmail;
+  };
+
   const checkAuthStatus = async () => {
     try {
       const response = await axios.get(API_ENDPOINTS.status());
       if (response.data.status === 'ok') {
         isAuthenticated.value = true;
-        username.value = response.data.username;
+        // ## FIXED: Use 'email' from the API response
+        email.value = response.data.email; 
       } else {
         isAuthenticated.value = false;
-        username.value = '';
+        email.value = '';
       }
     } catch (error) {
       isAuthenticated.value = false;
-      username.value = '';
+      email.value = '';
     }
   };
 
-  // Handles the logout process
   const handleLogout = async () => {
     try {
       await axios.post(API_ENDPOINTS.logout());
     } finally {
       isAuthenticated.value = false;
-      username.value = '';
-      // Redirect to the login page after logout
+      email.value = '';
       router.push('/login');
     }
   };
 
   return {
     isAuthenticated,
-    username,
+    email, // ## FIXED: Export 'email' instead of 'username'
+    setAuthenticated, // ## NEW: Export the new function
     checkAuthStatus,
     handleLogout,
   };

@@ -3,26 +3,29 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router'
+import { useAuth } from '../store/auth' // ## NEW: Import useAuth
 
-const email = ref('') // Changed from username
+const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const router = useRouter()
+const { setAuthenticated } = useAuth() // ## NEW: Get the setAuthenticated function
 
-// IMPORTANT: This tells axios to send cookies with cross-origin requests
 axios.defaults.withCredentials = true;
 
 const handleLogin = async () => {
   errorMessage.value = ''
   try {
-    // The payload now sends 'email' instead of 'username'
     const response = await axios.post(API_ENDPOINTS.login(), {
       email: email.value,
       password: password.value
     });
 
     if (response.data.status === 'ok') {
-      // Redirect to the generator page on successful login
+      // ## NEW: Update the global state after successful login
+      setAuthenticated(email.value);
+      
+      // Redirect to the generator page
       router.push('/generator');
     }
   } catch (error) {
