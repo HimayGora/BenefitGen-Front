@@ -109,7 +109,7 @@ useHead({
             </RouterLink>
           </div>
         </div>
-        <div v-else class="flex items-center space-x-4">
+        <div v-else class="flex items-center justify-center space-x-4">
           <RouterLink to="/generator" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
                 Go to App
           </RouterLink>
