@@ -4,7 +4,7 @@ import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router'
 
-const username = ref('')
+const email = ref('') // Changed from username
 const password = ref('')
 const errorMessage = ref('')
 const successMessage = ref('')
@@ -14,8 +14,9 @@ const handleRegister = async () => {
   errorMessage.value = ''
   successMessage.value = ''
   try {
+    // The payload now sends 'email' instead of 'username'
     const response = await axios.post(API_ENDPOINTS.register(), {
-      username: username.value,
+      email: email.value,
       password: password.value
     });
 
@@ -41,9 +42,16 @@ const handleRegister = async () => {
     <form @submit.prevent="handleRegister" class="bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
       <h1 class="text-2xl font-bold text-center mb-6 text-amber-400">Create Account</h1>
       <div class="mb-4">
-        <label for="username" class="block text-gray-300 text-sm font-bold mb-2">Username</label>
-        <input v-model="username" type="text" id="username" placeholder="Choose a username"
-          class="shadow appearance-none border rounded w-full py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500">
+        <label for="email" class="block text-gray-300 text-sm font-bold mb-2">
+          Email Address
+        </label>
+        <input 
+          v-model="email"
+          type="email" 
+          id="email"
+          placeholder="Enter your email"
+          class="shadow appearance-none border rounded w-full py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+        >
       </div>
       <div class="mb-6">
         <label for="password" class="block text-gray-300 text-sm font-bold mb-2">Password</label>
