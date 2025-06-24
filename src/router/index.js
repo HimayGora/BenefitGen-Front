@@ -7,6 +7,7 @@ import LandingPage from '../views/LandingPage.vue';
 import Generator from '../views/Generator.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
+import CaseStudy from '../views/CaseStudy.vue';
 
 const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
@@ -17,7 +18,8 @@ const routes = [
     name: 'Generator',
     component: Generator,
     meta: { requiresAuth: true } // Mark this route as requiring authentication
-  }
+  },
+  {path: '/case-study', name: 'CaseStudy', component: CaseStudy, meta: { requiresAuth: true } }
 ];
 
 const router = createRouter({
