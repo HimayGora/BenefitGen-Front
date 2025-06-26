@@ -19,7 +19,7 @@ const routes = [
     component: Generator,
     meta: { requiresAuth: true } // Mark this route as requiring authentication
   },
-  {path: '/case-study', name: 'CaseStudy', component: CaseStudy, meta: { requiresAuth: true } }
+  {path: '/case-study', name: 'CaseStudy', component: CaseStudy }
 ];
 
 const router = createRouter({
