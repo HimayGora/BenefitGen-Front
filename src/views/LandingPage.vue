@@ -24,7 +24,7 @@ useHead({
   <div class="w-full max-w-4xl mx-auto px-4">
         <section class="text-center py-16">
       <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4 text-amber-400">
-        Ship the Feature. Nail the Pitch.
+        Ship the Feature. Nail the Pitch.
       </h1>
       <p class="text-lg text-gray-300 max-w-2xl mx-auto">
         Your work is technical. Your stakeholders aren't. BenefitGen is the bridge, translating complex features into the clear, compelling benefits that drive budgets and win support.
@@ -34,7 +34,7 @@ useHead({
         <section class="mb-16 text-center max-w-3xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-6 text-white">Ever Feel Like You're Speaking a Different Language?</h2>
       <p class="text-gray-400">
-        You see elegant code, a robust API, or a scalable architecture. They see a line item and ask, "What's the ROI?" That gap is where great projects lose momentum. You're forced to become a translator on the fly, fighting to justify the value of your team's hard work.
+        You see elegant code, a robust API, or a scalable architecture. They see a line item and ask, "What's the ROI?" That gap is where great projects lose momentum. You're forced to become a translator on the fly, fighting to justify the value of your team's hard work.
       </p>
     </section>
 
@@ -69,15 +69,15 @@ useHead({
     </section>
     
         <section class="mb-16">
-        <h2 class="text-3xl font-bold text-center mb-8 text-white">It’s Not Just Automation, It’s Insight</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-white">It's Not Just Automation, It's Insight</h2>
         <p class="text-gray-400 text-center max-w-3xl mx-auto">
-            Other AI tools write generic copy. BenefitGen is different. It’s trained on product specs, pitch decks, and stakeholder updates. It doesn't just replace words; it reframes your perspective, turning technical jargon into strategic business value.
+        Other AI tools write generic copy. BenefitGen is different. It's trained on product specs, pitch decks, and stakeholder updates. It doesn't just replace words; it reframes your perspective, turning technical jargon into strategic business value.
         </p>
     </section>
     
         <section id="get-access" class="py-12 bg-gray-900 rounded-lg">
       <h2 class="text-3xl font-bold text-center mb-4 text-white">
-      Stop Translating in Your Head.
+        Stop Translating in Your Head.
       </h2>
       <p class="text-center text-amber-400 text-lg mb-8">Start generating winning pitches in seconds.</p>
 
@@ -87,14 +87,14 @@ useHead({
           to="/login"
           class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300"
          >
-          Log In
+         Log In
         </RouterLink>
 
         <RouterLink
           to="/register"
           class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 text-lg"
-  >
-          Start Translating for Free
+        >
+        Start Translating for Free
         </RouterLink>
       </div>
         <p class="text-center text-gray-500 text-sm">No credit card required.</p>
