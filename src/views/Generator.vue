@@ -41,9 +41,9 @@ const generateContent = async () => {
   generatedText.value = ''
 
   // --- Dynamic Endpoint Logic ---
-  let generatorType = 'lp'; // Default for free users
+  let generatorType = 'LP'; // Default for free users
   if (userPlan.value === 'pro') {
-    generatorType = 'tb';
+    generatorType = 'TB';
   } else if (userPlan.value === 'admin') {
     generatorType = selectedGenerator.value;
   }
