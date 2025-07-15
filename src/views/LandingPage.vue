@@ -100,7 +100,7 @@ useHead({
         <p class="text-center text-gray-500 text-sm">No credit card required.</p>
     </div>
 
-    <div v-else class="space-y-4 text-center">
+    <div v-else class="space-y-4 text-center px-8">
       <p class="text-blue-300 text-lg">
         💡 You're ready to go. Let's build your next pitch.
       </p>
