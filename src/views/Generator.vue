@@ -9,6 +9,7 @@ import { useHead } from '@vueuse/head';
 const features = ref(localStorage.getItem('features') || '')
 const isLoading = ref(false)
 const generatedText = ref('')
+const generatedBenefits = ref([])
 const errorMessage = ref('')
 const router = useRouter();
 
@@ -55,7 +56,20 @@ const generateContent = async () => {
     const response = await axios.post(url, {
       contents: features.value.trim()
     })
-    generatedText.value = response.data.generatedText
+    if (userPlan.value === 'pro' || userPlan.value === 'admin') {
+      try {
+        // Parse the JSON string into a real JavaScript array
+        generatedBenefits.value = JSON.parse(response.data.generatedText);
+      } catch (e) {
+        // If parsing fails, treat it as plain text as a fallback
+        console.error("Failed to parse JSON response:", e);
+        generatedText.value = response.data.generatedText;
+      }
+    } else {
+      // For the free plan, just assign the plain text
+      generatedText.value = response.data.generatedText
+    }
+    
   } catch (error) {
     console.error('Error generating content:', error)
     if (error.response?.status === 401) {
