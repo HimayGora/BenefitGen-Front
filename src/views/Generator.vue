@@ -6,6 +6,7 @@ import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
 
+
 const features = ref(localStorage.getItem('features') || '')
 const isLoading = ref(false)
 const generatedText = ref('')
@@ -19,7 +20,7 @@ const selectedGenerator = ref('lp') // Default generator for admin
 
 const MAX_WORDS = 100
 const wordCount = ref(0)
-const remainingWords = computed(() => MAX_WORDS - wordCount.value)
+const remainingWords = computed(() => MAX_WORDS - wordCount.value)  
 
 const handleInput = () => {
   const words = features.value.trim().match(/\b\w+([-']\w+)*\b/g) || []
@@ -35,39 +36,153 @@ const handleInput = () => {
   errorMessage.value = ''
 }
 
+// Add these methods to your existing methods in the script section
+
+const copyGeneratedText = async () => {
+  try {
+    await navigator.clipboard.writeText(generatedText.value)
+    // Optional: Show success message
+    console.log('Text copied to clipboard')
+  } catch (error) {
+    console.error('Failed to copy text:', error)
+    errorMessage.value = 'Unable to copy. Please select manually.'
+  }
+}
+
+const copyBenefitsAsText = async () => {
+  try {
+    // Convert benefits array to formatted text
+    const benefitsText = generatedBenefits.value.map((benefit, index) => {
+      if (typeof benefit === 'string') {
+        return `${index + 1}. ${benefit}`;
+      }
+      
+      let text = `${index + 1}. `;
+      
+      // Handle your specific JSON structure
+      if (benefit.benefit) {
+        text += `${benefit.benefit}\n`;
+        if (benefit.supporting_sentence) {
+          text += `${benefit.supporting_sentence}`;
+        }
+      } else {
+        // Fallback for other structures
+        if (benefit.title) text += `${benefit.title}\n`;
+        if (benefit.description) text += `${benefit.description}`;
+      }
+      
+      return text.trim();
+    }).join('\n\n');
+    
+    await navigator.clipboard.writeText(benefitsText)
+    console.log('Benefits copied to clipboard')
+  } catch (error) {
+    console.error('Failed to copy benefits:', error)
+    errorMessage.value = 'Unable to copy. Please select manually.'
+  }
+}
+
 const generateContent = async () => {
   isLoading.value = true
   errorMessage.value = ''
   generatedText.value = ''
-
+  generatedBenefits.value = [] // Clear previous benefits
+  
   // --- Dynamic Endpoint Logic ---
-  let generatorType = 'LP'; // Default for free users
+  let generatorType = 'lp'; // Default for free users (lowercase)
   if (userPlan.value === 'pro') {
-    generatorType = 'TB';
+    generatorType = 'tb'; // lowercase
   } else if (userPlan.value === 'admin') {
-    generatorType = selectedGenerator.value;
+    generatorType = selectedGenerator.value; // already lowercase from radio buttons
   }
-
+  
   // Construct the full API URL
-  const url = `${API_ENDPOINTS.base}/generate/${generatorType}`;
-
+  const url = `${API_ENDPOINTS.generate()}/${generatorType}`;
+  
   try {
-    // Corrected payload key from 'features' to 'contents' to match the backend
     const response = await axios.post(url, {
       contents: features.value.trim()
+    }, {
+      withCredentials: true
     })
-    if (userPlan.value === 'pro' || userPlan.value === 'admin') {
+    
+    const responseText = response.data.generatedText;
+    
+    // --- Unified JSON Parsing Logic for Both LP and TB ---
+    const parseJsonResponse = (text) => {
       try {
-        // Parse the JSON string into a real JavaScript array
-        generatedBenefits.value = JSON.parse(response.data.generatedText);
-      } catch (e) {
-        // If parsing fails, treat it as plain text as a fallback
-        console.error("Failed to parse JSON response:", e);
-        generatedText.value = response.data.generatedText;
+        // First, try to parse as JSON directly
+        const parsedData = JSON.parse(text);
+        
+        // Validate that it's an array
+        if (Array.isArray(parsedData)) {
+          return { success: true, data: parsedData };
+        } else {
+          // If it's an object, try to extract benefits array
+          if (parsedData.benefits && Array.isArray(parsedData.benefits)) {
+            return { success: true, data: parsedData.benefits };
+          } else {
+            throw new Error('Invalid JSON structure');
+          }
+        }
+      } catch (jsonError) {
+        console.error("Failed to parse JSON response:", jsonError);
+        console.log("Raw response:", text);
+        
+        // Try to extract JSON from markdown code blocks
+        const jsonMatch = text.match(/```(?:json)?\s*(\[[\s\S]*?\])\s*```/);
+        if (jsonMatch) {
+          try {
+            const extractedJson = JSON.parse(jsonMatch[1]);
+            return { success: true, data: Array.isArray(extractedJson) ? extractedJson : [extractedJson] };
+          } catch (extractError) {
+            console.error("Failed to parse extracted JSON:", extractError);
+          }
+        }
+        
+        // Try to find JSON array pattern without code blocks
+        const arrayMatch = text.match(/\[[\s\S]*?\]/);
+        if (arrayMatch) {
+          try {
+            const extractedArray = JSON.parse(arrayMatch[0]);
+            return { success: true, data: Array.isArray(extractedArray) ? extractedArray : [extractedArray] };
+          } catch (arrayError) {
+            console.error("Failed to parse array from text:", arrayError);
+          }
+        }
+        
+        // Try to find JSON object pattern
+        const objectMatch = text.match(/\{[\s\S]*?\}/);
+        if (objectMatch) {
+          try {
+            const extractedObject = JSON.parse(objectMatch[0]);
+            if (extractedObject.benefits && Array.isArray(extractedObject.benefits)) {
+              return { success: true, data: extractedObject.benefits };
+            }
+            return { success: true, data: [extractedObject] };
+          } catch (objectError) {
+            console.error("Failed to parse object from text:", objectError);
+          }
+        }
+        
+        // No JSON found or parseable
+        return { success: false, data: null };
+      }
+    };
+    
+    // Handle both LP and TB output with JSON parsing
+    if (generatorType === 'tb' || generatorType === 'lp') {
+      const parseResult = parseJsonResponse(responseText);
+      
+      if (parseResult.success) {
+        generatedBenefits.value = parseResult.data;
+      } else {
+        // Fallback to plain text if JSON parsing fails
+        generatedText.value = responseText;
       }
     } else {
-      // For the free plan, just assign the plain text
-      generatedText.value = response.data.generatedText
+      // For any other generator types, default to plain text
+      generatedText.value = responseText;
     }
     
   } catch (error) {
@@ -81,31 +196,6 @@ const generateContent = async () => {
   } finally {
     isLoading.value = false
   }
-}
-
-const handleLogout = async () => {
-  try {
-    await axios.post(API_ENDPOINTS.logout())
-    router.push('/login')
-  } catch (error) {
-    console.error('Error logging out:', error)
-    errorMessage.value = 'Failed to log out. Please try again.'
-  }
-}
-
-const copyGeneratedText = async () => {
-  try {
-    await navigator.clipboard.writeText(generatedText.value)
-  } catch {
-    errorMessage.value = 'Unable to copy. Please select manually.'
-  }
-}
-
-const resetForm = () => {
-  features.value = ''
-  wordCount.value = 0
-  generatedText.value = ''
-  localStorage.removeItem('features')
 }
 
 onMounted(async () => {
@@ -196,16 +286,58 @@ useHead({
       </div>
     </form>
 
-    <div v-if="generatedText" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
-      <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
-      <p class="text-gray-300 whitespace-pre-wrap">{{ generatedText }}</p>
-      <button
-        @click="copyGeneratedText"
-        class="mt-4 text-sm text-amber-400 hover:underline"
-      >
-        Copy to Clipboard
-      </button>
+    <!-- Replace your existing result display section with this -->
+<div v-if="generatedText || generatedBenefits.length > 0" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
+  <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
+  
+  <!-- Display for plain text (LP generator) -->
+  <div v-if="generatedText" class="mb-4">
+    <p class="text-gray-300 whitespace-pre-wrap">{{ generatedText }}</p>
+    <button
+      @click="copyGeneratedText"
+      class="mt-4 text-sm text-amber-400 hover:underline"
+    >
+      Copy to Clipboard
+    </button>
+  </div>
+  
+  <!-- Display for JSON benefits (TB generator) -->
+  <div v-if="generatedBenefits.length > 0" class="space-y-4">
+    <div 
+      v-for="(benefit, index) in generatedBenefits" 
+      :key="index"
+      class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-amber-500"
+    >
+      <!-- Handle your specific JSON structure -->
+      <h3 v-if="benefit.benefit" class="text-lg font-semibold text-amber-400 mb-2">
+        {{ benefit.benefit }}
+      </h3>
+      <p v-if="benefit.supporting_sentence" class="text-gray-300 mb-2">
+        {{ benefit.supporting_sentence }}
+      </p>
+      
+      <!-- Fallback for other structures -->
+      <h3 v-else-if="benefit.title" class="text-lg font-semibold text-amber-400 mb-2">
+        {{ benefit.title }}
+      </h3>
+      <p v-if="benefit.description" class="text-gray-300 mb-2">
+        {{ benefit.description }}
+      </p>
+      
+      <!-- Handle case where benefit is just a string -->
+      <p v-if="typeof benefit === 'string'" class="text-gray-300">
+        {{ benefit }}
+      </p>
     </div>
+    
+    <button
+      @click="copyBenefitsAsText"
+      class="mt-4 text-sm text-amber-400 hover:underline"
+    >
+      Copy All Benefits to Clipboard
+    </button>
+  </div>
+</div>
   </div>
 </template>
 
