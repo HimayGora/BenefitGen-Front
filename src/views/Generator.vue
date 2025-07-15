@@ -23,10 +23,13 @@ const remainingWords = computed(() => MAX_WORDS - wordCount.value)
 const handleInput = () => {
   const words = features.value.trim().match(/\b\w+([-']\w+)*\b/g) || []
   wordCount.value = words.length
-  if (wordCount.value > MAX_WORDS) {
+
+  
+  if (userPlan.value === 'free' && wordCount.value > MAX_WORDS) {
     features.value = words.slice(0, MAX_WORDS).join(' ')
     wordCount.value = MAX_WORDS
   }
+
   localStorage.setItem('features', features.value)
   errorMessage.value = ''
 }
@@ -153,7 +156,7 @@ useHead({
           placeholder="e.g., Tracks employee time spent on projects vs replying to emails..."
           class="shadow border rounded w-full py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
         ></textarea>
-        <p class="text-sm mt-1 text-right text-gray-400">
+        <p v-if="userPlan === 'free'" class="text-sm mt-1 text-right text-gray-400">
           {{ wordCount }} / {{ MAX_WORDS }} words used
         </p>
         <p v-if="errorMessage" class="text-red-500 text-xs italic mt-2">{{ errorMessage }}</p>
