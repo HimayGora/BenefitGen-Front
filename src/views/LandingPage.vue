@@ -87,7 +87,7 @@ useHead({
           to="/login"
           class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300"
          >
-         Log In
+        Log In
         </RouterLink>
 
         <RouterLink
