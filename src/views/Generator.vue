@@ -104,6 +104,7 @@ onMounted(async () => {
     if (response.data && response.data.plan) {
       userPlan.value = response.data.plan; // Set plan from API response
     }
+    console.log(userPlan.value)
   } catch (error) {
     console.error("Could not fetch user status:", error);
     // If the call fails (e.g., 401 Unauthorized), redirect to login
