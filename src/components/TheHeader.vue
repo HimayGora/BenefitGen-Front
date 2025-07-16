@@ -42,7 +42,14 @@ const displayName = computed(() => {
       </RouterLink>
 
       <div>
-        <div v-if="!isAuthenticated" class="flex items-center space-x-4">
+
+        <div v-if="isAdmin" class="flex items-center space-x-4">
+          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
+
+          </RouterLink>
+        </div>
+
+        <div v-else-if="!isAuthenticated" class="flex items-center space-x-4">
           
           <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
             Pricing
@@ -56,11 +63,7 @@ const displayName = computed(() => {
             Register
           </RouterLink>
         </div>
-        <div v-else-if="isAdmin" class="flex items-center space-x-4">
-          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-
-          </RouterLink>
-        </div>
+        
         <div v-else class="flex items-center space-x-4">
           <span class="text-gray-300">Welcome, {{ displayName }}</span>
           
