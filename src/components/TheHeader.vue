@@ -1,8 +1,37 @@
 <script setup>
 import { useAuth } from '../store/auth';
 import { RouterLink } from 'vue-router';
+import { computed } from 'vue';
 
 const { isAuthenticated, email, handleLogout } = useAuth();
+
+// Replace your old computed property with this new logic
+const displayName = computed(() => {
+  if (!email.value) {
+    return '';
+  }
+
+  const namePart = email.value.split('@')[0];
+  const dotIndex = namePart.indexOf('.');
+  const maxLength = 5;
+
+  let finalName = '';
+
+  // If a '.' exists and its position is before the maxLength
+  if (dotIndex !== -1 && dotIndex < maxLength) {
+    finalName = namePart.substring(0, dotIndex);
+  } else {
+    // Otherwise, just take the first 5 characters
+    finalName = namePart.substring(0, maxLength);
+  }
+
+  // Capitalize the first letter for a clean display
+  if (finalName.length > 0) {
+    return finalName.charAt(0).toUpperCase() + finalName.slice(1);
+  }
+  
+  return '';
+});
 </script>
 
 <template>
@@ -23,14 +52,16 @@ const { isAuthenticated, email, handleLogout } = useAuth();
         </div>
 
         <div v-else class="flex items-center space-x-4">
-          <span class="text-gray-300">Welcome, {{ email }}</span>
+          <!-- Use the new 'displayName' computed property here -->
+          <span class="text-gray-300">Welcome, {{ displayName }}</span>
+  
           <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
             Go to App
           </RouterLink>
           <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
             Logout
           </button>
-        </div>
+</div>
       </div>
     </nav>
   </header>

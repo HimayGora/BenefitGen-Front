@@ -8,6 +8,9 @@ import Generator from '../views/Generator.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import CaseStudy from '../views/CaseStudy.vue';
+import Pricing from '../views/Pricing.vue';
+import PaymentSuccess from '../views/PaymentSuccess.vue';
+import PaymentCancel from '../views/PaymentCancel.vue';
 
 const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
@@ -17,9 +20,28 @@ const routes = [
     path: '/generator',
     name: 'Generator',
     component: Generator,
-    meta: { requiresAuth: true } // Mark this route as requiring authentication
+    meta: { requiresAuth: true }
   },
-  {path: '/case-study', name: 'CaseStudy', component: CaseStudy }
+  {path: '/case-study', name: 'CaseStudy', component: CaseStudy },
+
+  {
+    path: '/pricing',
+    name: 'Pricing',
+    component: Pricing,
+    
+  },
+  {
+    path: '/success',
+    name: 'PaymentSuccess',
+    component: PaymentSuccess,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/cancel',
+    name: 'PaymentCancel',
+    component: PaymentCancel,
+    meta: { requiresAuth: true }
+  }
 ];
 
 const router = createRouter({
