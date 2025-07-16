@@ -56,7 +56,7 @@ const displayName = computed(() => {
             Register
           </RouterLink>
         </div>
-        <div v-if="isAdmin" class="flex items-center space-x-4">
+        <div v-else-if="isAdmin" class="flex items-center space-x-4">
           <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
 
           </RouterLink>
