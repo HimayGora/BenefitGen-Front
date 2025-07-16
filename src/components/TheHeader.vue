@@ -43,7 +43,7 @@ const displayName = computed(() => {
 
       <div>
 
-        <div v-if="!sAdmin && isAuthenticated" class="flex items-center space-x-4">
+        <div v-if="!isAdmin && isAuthenticated" class="flex items-center space-x-4">
           <span class="text-gray-300">Welcome, {{ displayName }}</span>
           
           <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
