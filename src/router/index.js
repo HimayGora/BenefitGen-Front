@@ -11,6 +11,7 @@ import CaseStudy from '../views/CaseStudy.vue';
 import Pricing from '../views/Pricing.vue';
 import PaymentSuccess from '../views/PaymentSuccess.vue';
 import PaymentCancel from '../views/PaymentCancel.vue';
+import Admin from '../views/Admin.vue';
 
 const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
@@ -41,6 +42,12 @@ const routes = [
     name: 'PaymentCancel',
     component: PaymentCancel,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+    meta: { requiresAuth: true, requiresAdmin: true }
   }
 ];
 
@@ -51,23 +58,28 @@ const router = createRouter({
 
 // Global Navigation Guard
 router.beforeEach(async (to, from, next) => {
-  // Check if the route requires authentication
-  if (to.meta.requiresAuth) {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
+
+  if (requiresAuth) {
     try {
-      // Set withCredentials for this check, in case the user reloads the page
       axios.defaults.withCredentials = true;
-      // Call the /api/status endpoint to verify the user's session
-      await axios.get(API_ENDPOINTS.status());
-      // If the request succeeds (doesn't throw an error), the user is authenticated.
-      next();
+      const response = await axios.get(API_ENDPOINTS.status());
+      
+      if (requiresAdmin && response.data.plan !== 'admin') {
+        // If route requires admin and user is not admin, redirect
+        next({ name: 'Landing' });
+      } else {
+        // User is authenticated
+        next();
+      }
     } catch (error) {
-      // If the request fails (e.g., returns a 401), the user is not authenticated.
-      // Redirect them to the login page.
+      // User is not authenticated, redirect to login
       console.log('Authentication required. Redirecting to login.');
       next({ name: 'Login' });
     }
   } else {
-    // If the route doesn't require auth, allow the user to proceed
+    // Route doesn't require auth
     next();
   }
 });

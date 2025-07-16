@@ -1,3 +1,9 @@
+#Bots are allowed on landing page, pricing page, and case-study all other pages disallowed
+
 User-agent: *
 Disallow: /
+Allow: /$
+Allow: /case-study
+Allow: /pricing
+
 Sitemap: https://www.hsgcraft.com/sitemap.xml
