@@ -43,28 +43,7 @@ const displayName = computed(() => {
 
       <div>
 
-        <div v-if="isAdmin" class="flex items-center space-x-4">
-          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-
-          </RouterLink>
-        </div>
-
-        <div v-else-if="!isAuthenticated" class="flex items-center space-x-4">
-          
-          <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Pricing
-          </RouterLink>
-
-          <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Login
-          </RouterLink>
-
-          <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-            Register
-          </RouterLink>
-        </div>
-        
-        <div v-else class="flex items-center space-x-4">
+        <div v-if="!sAdmin & isAuthenticated" class="flex items-center space-x-4">
           <span class="text-gray-300">Welcome, {{ displayName }}</span>
           
           <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
@@ -80,6 +59,27 @@ const displayName = computed(() => {
           <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
             Logout
           </button>
+        </div>
+
+        <div v-else-if="!isAuthenticated " class="flex items-center space-x-4">
+          
+          <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
+            Pricing
+          </RouterLink>
+
+          <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
+            Login
+          </RouterLink>
+
+          <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
+            Register
+          </RouterLink>
+        </div>
+        
+        <div v-else class="flex items-center space-x-4">
+          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
+            Admin page
+          </RouterLink>
         </div>
       </div>
     </nav>
