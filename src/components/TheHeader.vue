@@ -1,9 +1,9 @@
 <script setup>
-import { useAuth, isAdmin } from '../store/auth';
+import { useAuth } from '../store/auth';
 import { RouterLink } from 'vue-router';
 import { computed } from 'vue';
 
-const { isAuthenticated, email, handleLogout } = useAuth();
+const { isAuthenticated, email, isAdmin, handleLogout } = useAuth();
 
 // Replace your old computed property with this new logic
 const displayName = computed(() => {
