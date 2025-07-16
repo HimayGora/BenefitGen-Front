@@ -1,5 +1,5 @@
 <script setup>
-import { useAuth } from '../store/auth';
+import { useAuth, isAdmin } from '../store/auth';
 import { RouterLink } from 'vue-router';
 import { computed } from 'vue';
 
@@ -56,13 +56,19 @@ const displayName = computed(() => {
             Register
           </RouterLink>
         </div>
+        <div v-if="isAdmin" class="flex items-center space-x-4">
+          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
 
+          </RouterLink>
+        </div>
         <div v-else class="flex items-center space-x-4">
           <span class="text-gray-300">Welcome, {{ displayName }}</span>
           
           <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
             Pricing
           </RouterLink>
+
+          
 
           <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
             Go to App
