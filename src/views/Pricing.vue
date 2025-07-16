@@ -40,8 +40,8 @@ const plans = ref([
   },
   {
     name: 'Pro',
-    price: '$25',
-    priceId: 'your_pro_price_id', // IMPORTANT: Replace with your actual Stripe Price ID
+    price: '$35',
+    priceId: 'prod_SggQsgqkHOCPi3', // IMPORTANT: Replace with your actual Stripe Price ID
     description: 'For professionals who need more power.',
     features: [
       '500 Generations per day',
