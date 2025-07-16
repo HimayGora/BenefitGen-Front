@@ -126,7 +126,7 @@ const handleCheckout = async (priceId) => {
 
           <button
             v-if="plan.priceId"
-            @click="plan.cta.action(plan.priceId)"
+            @click="plan.cta.action"
             :disabled="loadingPriceId === plan.priceId"
             class="mt-auto w-full font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 text-lg"
             :class="plan.isPrimary ? 'bg-amber-500 hover:bg-amber-600 text-stone-900' : 'bg-gray-700 hover:bg-gray-600 text-white'"
@@ -136,7 +136,7 @@ const handleCheckout = async (priceId) => {
 
           <button
             v-else
-            @click="isAuthenticated ? plan.cta.authedAction() : plan.cta.action()"
+            @click="() => plan.cta.action(plan.priceId)"
             class="mt-auto w-full font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 text-lg"
             :class="plan.isPrimary ? 'bg-amber-500 hover:bg-amber-600 text-stone-900' : 'bg-gray-700 hover:bg-gray-600 text-white'"
           >
