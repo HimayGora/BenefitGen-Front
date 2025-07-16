@@ -83,6 +83,7 @@ const handleCheckout = async (priceId) => {
   } catch (error) {
     errorMessage.value = 'An unexpected error occurred.';
     loadingPriceId.value = null;
+    console.log(error)
   }
 };
 </script>
