@@ -1,7 +1,7 @@
 // src/store/auth.js
 import { ref, computed } from 'vue'; // NEW: Import 'computed'
 import axios from 'axios';
-import { API_ENDPOINTS } from '../utils/endpoints'; // Using your endpoints.js file
+import { API_ENDPOINTS } from '../utils/endpoints.js'; // Using your endpoints.js file
 import { useRouter } from 'vue-router';
 
 // --- Reactive state variables ---
