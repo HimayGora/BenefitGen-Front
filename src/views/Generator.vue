@@ -5,7 +5,7 @@ import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api' 
 import { useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
-import LoadingAnimation from '.components\LoadingAnimation.vue';
+import LoadingAnimation from '.components/LoadingAnimation.vue';
 
 
 const features = ref(localStorage.getItem('features') || '')
