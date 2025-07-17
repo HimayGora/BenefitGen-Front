@@ -238,7 +238,7 @@ useHead({
 </script>
 
 <template>
-  <div class=" max-w-2xl">
+  <div class="w-full max-w-4xl px-4">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-amber-400">Benefit Copy Generator</h1>
       <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors duration-300">

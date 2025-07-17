@@ -42,7 +42,7 @@ useHead({
 </script>
 
 <template>
-  <div class=" max-w-md">
+  <div class="w-full max-w-4xl px-4">
     <form @submit.prevent="handleRegister" class="bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
       <h1 class="text-2xl font-bold text-center mb-6 text-amber-400">Create Account</h1>
       <div class="mb-4">

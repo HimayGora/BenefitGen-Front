@@ -80,7 +80,7 @@ const displayName = computed(() => {
               Register
             </RouterLink>
           </div>
-
+          <p class="text-xs text-white">Auth: {{ isAuthenticated }} | Admin: {{ isAdmin }} | Email: {{ email }}</p>
         </div>
       </nav>
     </div>
