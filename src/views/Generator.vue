@@ -5,6 +5,7 @@ import axios from 'axios'
 import { API_ENDPOINTS } from '../utils/api' 
 import { useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
+import LoadingAnimation from '.components\LoadingAnimation.vue';
 
 
 const features = ref(localStorage.getItem('features') || '')
@@ -80,6 +81,20 @@ const copyBenefitsAsText = async () => {
     console.error('Failed to copy benefits:', error)
     errorMessage.value = 'Unable to copy. Please select manually.'
   }
+}
+
+const resetForm = () => {
+  features.value = ''
+  generatedText.value = ''
+  generatedBenefits.value = []
+  errorMessage.value = ''
+  wordCount.value = 0
+  localStorage.removeItem('features')
+}
+
+const handleLogout = () => {
+  // Add your logout logic here
+  router.push('/login')
 }
 
 const generateContent = async () => {
@@ -249,7 +264,7 @@ useHead({
       <div class="mb-6">
         <label for="features" class="block text-gray-300 text-sm font-bold mb-2">What does your product do?</label>
         <p class="text-gray-400 text-sm mb-2">
-          Paste a short feature list or a 1–2 sentence description. We’ll turn it into benefit copy.
+          Paste a short feature list or a 1–2 sentence description. We'll turn it into benefit copy.
         </p>
         <textarea
           v-model="features"
@@ -286,58 +301,63 @@ useHead({
       </div>
     </form>
 
-    <!-- Replace your existing result display section with this -->
-<div v-if="generatedText || generatedBenefits.length > 0" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
-  <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
-  
-  <!-- Display for plain text (LP generator) -->
-  <div v-if="generatedText" class="mb-4">
-    <p class="text-gray-300 whitespace-pre-wrap">{{ generatedText }}</p>
-    <button
-      @click="copyGeneratedText"
-      class="mt-4 text-sm text-amber-400 hover:underline"
-    >
-      Copy to Clipboard
-    </button>
-  </div>
-  
-  <!-- Display for JSON benefits (TB generator) -->
-  <div v-if="generatedBenefits.length > 0" class="space-y-4">
-    <div 
-      v-for="(benefit, index) in generatedBenefits" 
-      :key="index"
-      class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-amber-500"
-    >
-      <!-- Handle your specific JSON structure -->
-      <h3 v-if="benefit.benefit" class="text-lg font-semibold text-amber-400 mb-2">
-        {{ benefit.benefit }}
-      </h3>
-      <p v-if="benefit.supporting_sentence" class="text-gray-300 mb-2">
-        {{ benefit.supporting_sentence }}
-      </p>
-      
-      <!-- Fallback for other structures -->
-      <h3 v-else-if="benefit.title" class="text-lg font-semibold text-amber-400 mb-2">
-        {{ benefit.title }}
-      </h3>
-      <p v-if="benefit.description" class="text-gray-300 mb-2">
-        {{ benefit.description }}
-      </p>
-      
-      <!-- Handle case where benefit is just a string -->
-      <p v-if="typeof benefit === 'string'" class="text-gray-300">
-        {{ benefit }}
-      </p>
+    <!-- Loading Animation -->
+    <div v-if="isLoading" class="bg-gray-800 shadow-md rounded-lg mt-6">
+      <LoadingAnimation />
     </div>
-    
-    <button
-      @click="copyBenefitsAsText"
-      class="mt-4 text-sm text-amber-400 hover:underline"
-    >
-      Copy All Benefits to Clipboard
-    </button>
-  </div>
-</div>
+
+    <!-- Results Display (only show when not loading and has results) -->
+    <div v-else-if="generatedText || generatedBenefits.length > 0" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
+      <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
+      
+      <!-- Display for plain text (LP generator) -->
+      <div v-if="generatedText" class="mb-4">
+        <p class="text-gray-300 whitespace-pre-wrap">{{ generatedText }}</p>
+        <button
+          @click="copyGeneratedText"
+          class="mt-4 text-sm text-amber-400 hover:underline"
+        >
+          Copy to Clipboard
+        </button>
+      </div>
+      
+      <!-- Display for JSON benefits (TB generator) -->
+      <div v-if="generatedBenefits.length > 0" class="space-y-4">
+        <div 
+          v-for="(benefit, index) in generatedBenefits" 
+          :key="index"
+          class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-amber-500"
+        >
+          <!-- Handle your specific JSON structure -->
+          <h3 v-if="benefit.benefit" class="text-lg font-semibold text-amber-400 mb-2">
+            {{ benefit.benefit }}
+          </h3>
+          <p v-if="benefit.supporting_sentence" class="text-gray-300 mb-2">
+            {{ benefit.supporting_sentence }}
+          </p>
+          
+          <!-- Fallback for other structures -->
+          <h3 v-else-if="benefit.title" class="text-lg font-semibold text-amber-400 mb-2">
+            {{ benefit.title }}
+          </h3>
+          <p v-if="benefit.description" class="text-gray-300 mb-2">
+            {{ benefit.description }}
+          </p>
+          
+          <!-- Handle case where benefit is just a string -->
+          <p v-if="typeof benefit === 'string'" class="text-gray-300">
+            {{ benefit }}
+          </p>
+        </div>
+        
+        <button
+          @click="copyBenefitsAsText"
+          class="mt-4 text-sm text-amber-400 hover:underline"
+        >
+          Copy All Benefits to Clipboard
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
