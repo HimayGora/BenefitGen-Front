@@ -341,7 +341,7 @@ useHead({
       <div class="flex items-center justify-between">
         <button
           type="submit"
-          :disabled="isLoading || wordCount === 0"
+          :disabled="isLoading || wordCount === 0 || piiErrorMessage"
           class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
           {{ isLoading ? 'Generating...' : 'Generate Benefits' }}
@@ -451,4 +451,16 @@ textarea:disabled {
   background-position: center;
   background-repeat: no-repeat;
 }
+.disabled\:bg-gray-500 {
+  background-color: #6b7280 !important; /* Tailwind gray-500 */
+}
+
+.disabled\:cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
 </style>
