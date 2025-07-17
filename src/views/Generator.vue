@@ -14,6 +14,9 @@ const generatedText = ref('')
 const generatedBenefits = ref([])
 const errorMessage = ref('')
 const router = useRouter();
+const piiErrorMessage = ref('')
+const piiUpgradeLink = ref('')
+
 
 // --- New State for User Plan and Generator Choice ---
 const userPlan = ref('free') // Default plan
@@ -201,16 +204,30 @@ const generateContent = async () => {
     }
     
   } catch (error) {
-    console.error('Error generating content:', error)
-    if (error.response?.status === 401) {
-      errorMessage.value = 'Your session has expired. Please log in again.'
-      router.push('/login')
-    } else {
-      errorMessage.value = error.response?.data?.error || 'An error occurred while generating content.'
+  console.error('Error generating content:', error)
+
+  // Clear previous error states
+  errorMessage.value = ''
+  piiErrorMessage.value = ''
+  piiUpgradeLink.value = ''
+
+  if (error.response?.status === 401) {
+    errorMessage.value = 'Your session has expired. Please log in again.'
+    router.push('/login')
+
+  } else if (error.response?.status === 422 && error.response.data?.error === 'pii_detected') {
+    // Handle PII detected error explicitly
+    piiErrorMessage.value = error.response.data.message || 'Submission rejected due to detected personal information.'
+
+    if (error.response.data.upgrade_url) {
+      piiUpgradeLink.value = error.response.data.upgrade_url
     }
-  } finally {
-    isLoading.value = false
+
+  } else {
+    // Generic error fallback
+    errorMessage.value = error.response?.data?.error || 'An error occurred while generating content.'
   }
+}
 }
 
 onMounted(async () => {
@@ -278,7 +295,22 @@ useHead({
         <p v-if="userPlan === 'free'" class="text-sm mt-1 text-right text-gray-400">
           {{ wordCount }} / {{ MAX_WORDS }} words used
         </p>
+        <!-- Normal errors -->
         <p v-if="errorMessage" class="text-red-500 text-xs italic mt-2">{{ errorMessage }}</p>
+
+      <!-- PII rejection errors -->
+      <p v-if="piiErrorMessage" class="text-red-500 text-xs italic mt-2">{{ piiErrorMessage }}</p>
+
+        <a
+        v-if="piiUpgradeLink"
+        :href="piiUpgradeLink"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-amber-400 underline text-xs block mt-1"
+        >
+          Upgrade your plan here
+        </a>
+
       </div>
 
       <div class="flex items-center justify-between">
