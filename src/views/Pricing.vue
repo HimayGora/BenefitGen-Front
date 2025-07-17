@@ -26,10 +26,9 @@ const plans = ref([
     priceId: null, // No Stripe ID for the free plan
     description: 'For individuals & hobbyists getting started.',
     features: [
-      '20 Generations per day',
-      '200 Generations per month',
-      'Standard model access',
-      'Community Support',
+      '10 Generations per day',
+      '40 Generations per month',
+      '100 Word max input'
     ],
     cta: {
       text: 'Start for Free',
@@ -44,10 +43,10 @@ const plans = ref([
     priceId: 'prod_SggQsgqkHOCPi3', // IMPORTANT: Replace with your actual Stripe Price ID
     description: 'For professionals who need more power.',
     features: [
-      '500 Generations per day',
-      '5,000 Generations per month',
-      'Priority model access',
+      '45 Generations per day',
+      '450 Generations per month',
       'Email Support',
+      '1000 Word max input'
     ],
     cta: {
       text: 'Subscribe to Pro',
