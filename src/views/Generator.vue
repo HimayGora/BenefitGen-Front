@@ -31,6 +31,7 @@ function containsPII(text) {
   const piiPatterns = [
     /\b\d{3}[-.]?\d{2}[-.]?\d{4}\b/, // SSN-like pattern
     /\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/, // US phone-like pattern
+    /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/, // email
     /\b\d{16}\b/, // credit card (simple 16-digit)
   ]
   return piiPatterns.some(pattern => pattern.test(text))
