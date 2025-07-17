@@ -1,44 +1,54 @@
 // src/store/auth.js
 import { ref } from 'vue';
 import axios from 'axios';
-// Using your endpoints.js file
 import { API_ENDPOINTS } from '../utils/api/endpoints.js';
 import { useRouter } from 'vue-router';
 
 // Reactive state variables
 const isAuthenticated = ref(false);
 const email = ref('');
-const isAdmin = ref(false); // ## NEW: Add state for admin status ##
+const isAdmin = ref(false);
+const plan = ref('free'); // ## NEW: Add state for the user's plan ##
 
 // A central place to manage authentication logic
 export function useAuth() {
   const router = useRouter();
 
-  // ## UPDATED: Function to be called after a successful login ##
-  const setAuthenticated = (userEmail, userIsAdmin = false) => {
+  // This function is useful for manual state setting, like after registration
+  const setAuthenticated = (userEmail, userPlan = 'free') => {
     isAuthenticated.value = true;
     email.value = userEmail;
-    isAdmin.value = userIsAdmin; // ## NEW: Set admin status ##
+    plan.value = userPlan;
+    isAdmin.value = userPlan === 'admin'; // Derive admin status from plan
   };
 
   const checkAuthStatus = async () => {
     try {
       const response = await axios.get(API_ENDPOINTS.status());
-      if (response.data.status === 'ok') {
+      
+      // Check for a successful response and email (primary indicators)
+      if (response.data.status === 'ok' && response.data.email) {
         isAuthenticated.value = true;
         email.value = response.data.email;
-        // ## NEW: Set admin status from the API response ##
-        // Your API must return `isAdmin: true` for admin users.
-        isAdmin.value = response.data.isAdmin || false;
+        plan.value = response.data.plan || 'free'; // Store the user's plan
+
+        // ## CORRECTED LOGIC ##
+        // Set isAdmin based on whether the user's plan is 'admin'
+        isAdmin.value = response.data.plan === 'admin';
+
       } else {
+        // Reset all state if auth check fails
         isAuthenticated.value = false;
         email.value = '';
-        isAdmin.value = false; // ## NEW: Reset admin status ##
+        plan.value = 'free';
+        isAdmin.value = false;
       }
     } catch (error) {
+      // Reset all state on error
       isAuthenticated.value = false;
       email.value = '';
-      isAdmin.value = false; // ## NEW: Reset admin status ##
+      plan.value = 'free';
+      isAdmin.value = false;
     }
   };
 
@@ -46,9 +56,11 @@ export function useAuth() {
     try {
       await axios.post(API_ENDPOINTS.logout());
     } finally {
+      // Reset all state on logout
       isAuthenticated.value = false;
       email.value = '';
-      isAdmin.value = false; // ## NEW: Reset admin status on logout ##
+      plan.value = 'free';
+      isAdmin.value = false;
       router.push('/login');
     }
   };
@@ -56,7 +68,8 @@ export function useAuth() {
   return {
     isAuthenticated,
     email,
-    isAdmin, // ## NEW: Export 'isAdmin' ##
+    isAdmin,
+    plan, // ## NEW: Export 'plan' ##
     setAuthenticated,
     checkAuthStatus,
     handleLogout,
