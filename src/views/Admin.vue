@@ -172,27 +172,6 @@ onMounted(() => {
           </tr>
         </tbody>
       </table>
-      <section class="mt-8 p-4 bg-gray-900 rounded-lg max-w-4xl mx-auto">
-        <h2 class="text-xl font-bold text-amber-400 mb-2">JSON Generate API Test</h2>
-
-        <label class="block mb-1 text-white" for="promptName">Prompt Name</label>
-        <input id="promptName" v-model="testPromptName" type="text" class="w-full mb-4 p-2 rounded bg-gray-700 text-white" />
-
-        <label class="block mb-1 text-white" for="testInput">Test Input (contents)</label>
-        <textarea id="testInput" v-model="testInput" rows="6" class="w-full mb-4 p-2 rounded bg-gray-700 text-white" placeholder="Paste your JSON or text input here"></textarea>
-
-        <button @click="runJsonTest" :disabled="testResult.loading" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded">
-          {{ testResult.loading ? 'Testing...' : 'Run JSON Test' }}
-        </button>
-
-        <div v-if="testResult.success === true" class="mt-4 p-3 bg-green-900 text-green-300 rounded whitespace-pre-wrap font-mono text-sm max-h-64 overflow-auto">
-          {{ JSON.stringify(testResult.data, null, 2) }}
-        </div>
-
-        <div v-if="testResult.success === false" class="mt-4 p-3 bg-red-900 text-red-300 rounded whitespace-pre-wrap font-mono text-sm max-h-64 overflow-auto">
-          {{ typeof testResult.error === 'string' ? testResult.error : JSON.stringify(testResult.error, null, 2) }}
-        </div>
-      </section>
 
     </div>
   </div>

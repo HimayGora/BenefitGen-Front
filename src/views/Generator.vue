@@ -156,7 +156,8 @@ const generateContent = async () => {
     const parseJsonResponse = (text) => {
       try {
         // First, try to parse as JSON directly
-        const parsedData = JSON.parse(text);
+        const cleanedText = text.trim().replace(/^json\s*\n/i, '');
+        const parsedData = JSON.parse(cleanedText);
         
         // Validate that it's an array
         if (Array.isArray(parsedData)) {
