@@ -35,7 +35,7 @@ const displayName = computed(() => {
 </script>
 
 <template>
-  <header class="bg-gray-800/50 backdrop-blur-sm w-full max-w-5xl p-4 rounded-lg shadow-lg mb-8">
+  <header class="bg-gray-800/50 backdrop-blur-sm  max-w-5xl p-4 rounded-lg shadow-lg mb-8">
     <nav class="flex justify-between items-center">
       <RouterLink to="/" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors">
         BenefitGen

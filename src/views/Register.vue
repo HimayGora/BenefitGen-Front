@@ -42,7 +42,7 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full max-w-md">
+  <div class=" max-w-md">
     <form @submit.prevent="handleRegister" class="bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
       <h1 class="text-2xl font-bold text-center mb-6 text-amber-400">Create Account</h1>
       <div class="mb-4">
@@ -54,13 +54,13 @@ useHead({
           type="email" 
           id="email"
           placeholder="Enter your email"
-          class="shadow appearance-none border rounded w-full py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+          class="shadow appearance-none border rounded  py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
         >
       </div>
       <div class="mb-6">
         <label for="password" class="block text-gray-300 text-sm font-bold mb-2">Password</label>
         <input v-model="password" type="password" id="password" placeholder="Create a secure password"
-          class="shadow appearance-none border rounded w-full py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500">
+          class="shadow appearance-none border rounded  py-3 px-4 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500">
       </div>
       <p v-if="errorMessage" class="text-red-500 text-xs italic mb-4">{{ errorMessage }}</p>
       <p v-if="successMessage" class="text-green-500 text-xs italic mb-4">{{ successMessage }}</p>

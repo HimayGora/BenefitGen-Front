@@ -238,7 +238,7 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full max-w-2xl">
+  <div class=" max-w-2xl">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-amber-400">Benefit Copy Generator</h1>
       <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors duration-300">
@@ -273,7 +273,7 @@ useHead({
           id="features"
           rows="6"
           placeholder="e.g., Tracks employee time spent on projects vs replying to emails..."
-          class="shadow border rounded w-full py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+          class="shadow border rounded  py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
         ></textarea>
         <p v-if="userPlan === 'free'" class="text-sm mt-1 text-right text-gray-400">
           {{ wordCount }} / {{ MAX_WORDS }} words used

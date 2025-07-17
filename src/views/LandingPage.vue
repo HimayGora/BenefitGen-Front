@@ -21,7 +21,7 @@ useHead({
 })
 </script>
 <template>
-  <div class="w-full max-w-4xl mx-auto px-4">
+  <div class=" max-w-4xl mx-auto px-4">
         <section class="text-center py-16">
       <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4 text-amber-400">
         Ship the Feature. Nail the Pitch.

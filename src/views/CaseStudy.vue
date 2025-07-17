@@ -30,7 +30,7 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full max-w-4xl mx-auto px-4 py-16">
+  <div class=" max-w-4xl mx-auto px-4 py-16">
     <!-- Header Section -->
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-bold mb-4 text-amber-400">

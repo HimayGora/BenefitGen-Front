@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full max-w-6xl mx-auto px-4 py-8">
+  <div class=" max-w-6xl mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-amber-400 mb-6">Admin Panel</h1>
 
     <!-- Site Stats Section -->
@@ -107,7 +107,7 @@ onMounted(() => {
 
     <div v-if="!isLoading && users.length" class="bg-gray-800 shadow-md rounded-lg overflow-x-auto">
         <h2 class="text-2xl font-bold text-white mb-4 px-6 pt-6">User Management</h2>
-      <table class="min-w-full text-sm text-left text-gray-300">
+      <table class="min- text-sm text-left text-gray-300">
         <thead class="text-xs text-amber-400 uppercase bg-gray-900/50">
           <tr>
             <th scope="col" class="px-6 py-3">Email</th>

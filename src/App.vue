@@ -25,7 +25,7 @@ onMounted(async () => {
   <Transition name="fade">
     <div v-if="isReady" class="flex flex-col items-center min-h-screen pt-8">
       <TheHeader />
-      <main class="w-full">
+      <main class="">
         <RouterView />
       </main>
     </div>
