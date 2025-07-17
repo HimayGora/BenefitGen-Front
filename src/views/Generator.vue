@@ -26,19 +26,44 @@ const MAX_WORDS = 100
 const wordCount = ref(0)
 const remainingWords = computed(() => MAX_WORDS - wordCount.value)  
 
+function containsPII(text) {
+  // Basic example: detects emails, phone numbers, SSNs (simple patterns)
+  const piiPatterns = [
+    /\b\d{3}[-.]?\d{2}[-.]?\d{4}\b/, // SSN-like pattern
+    /\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/, // US phone-like pattern
+    /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/, // email
+    /\b\d{16}\b/, // credit card (simple 16-digit)
+  ]
+  return piiPatterns.some(pattern => pattern.test(text))
+}
+
+const UPGRADE_URL = '/pricing' // Your actual upgrade page
+
 const handleInput = () => {
   const words = features.value.trim().match(/\b\w+([-']\w+)*\b/g) || []
   wordCount.value = words.length
-
   
+  // Reset error messages first
+  errorMessage.value = ''
+  piiErrorMessage.value = ''
+  piiUpgradeLink.value = ''
+
+  // Front-end PII check (runs before trimming)
+  if (containsPII(features.value)) {
+    piiErrorMessage.value = 'Your input contains sensitive information (PII) which is not allowed.'
+    piiUpgradeLink.value = UPGRADE_URL
+    // Optionally block further typing or clear input partially — here we just stop further input:
+    return
+  }
+
   if (userPlan.value === 'free' && wordCount.value > MAX_WORDS) {
     features.value = words.slice(0, MAX_WORDS).join(' ')
     wordCount.value = MAX_WORDS
   }
 
   localStorage.setItem('features', features.value)
-  errorMessage.value = ''
 }
+
 
 // Add these methods to your existing methods in the script section
 
@@ -52,6 +77,7 @@ const copyGeneratedText = async () => {
     errorMessage.value = 'Unable to copy. Please select manually.'
   }
 }
+
 
 const copyBenefitsAsText = async () => {
   try {
@@ -298,18 +324,17 @@ useHead({
         <!-- Normal errors -->
         <p v-if="errorMessage" class="text-red-500 text-xs italic mt-2">{{ errorMessage }}</p>
 
-      <!-- PII rejection errors -->
-      <p v-if="piiErrorMessage" class="text-red-500 text-xs italic mt-2">{{ piiErrorMessage }}</p>
+        <!-- PII rejection errors -->
+        <p v-if="piiErrorMessage" class="text-red-500 text-xs italic mt-2">{{ piiErrorMessage }}</p>
 
-        <a
-        v-if="piiUpgradeLink"
-        :href="piiUpgradeLink"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-amber-400 underline text-xs block mt-1"
+
+        <RouterLink
+          v-if="piiUpgradeLink"
+          :to="piiUpgradeLink"
+          class="text-amber-400 underline text-xs block mt-1"
         >
           Upgrade your plan here
-        </a>
+        </RouterLink>
 
       </div>
 
