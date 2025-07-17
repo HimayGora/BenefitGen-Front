@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useHead } from '@vueuse/head';
 import { useAuth } from '../store/auth';
 import { RouterLink, useRouter } from 'vue-router';
-
+import { API_ENDPOINTS } from '../utils/api/endpoints.js';
 
 useHead({
   title: 'Pricing - BenefitGen',
@@ -65,7 +65,7 @@ const handleCheckout = async (priceId) => {
   loadingPriceId.value = priceId;
   errorMessage.value = '';
   try {
-    const res = await fetch('/api/create-checkout-session', {
+    const res = await fetch(API_ENDPOINTS.createCheckoutSession(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ priceId }),
