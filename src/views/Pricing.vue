@@ -69,6 +69,7 @@ const handleCheckout = async (priceId) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ priceId }),
+      credentials: 'include'
     });
 
     if (res.ok) {
