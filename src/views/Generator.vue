@@ -126,6 +126,15 @@ const handleLogout = () => {
   router.push('/login')
 }
 
+function extractJsonFromCodeBlock(text) {
+  const match = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (match && match[1]) {
+    return match[1];
+  }
+  return text; // fallback to original text if no code block found
+}
+
+
 const generateContent = async () => {
   isLoading.value = true
   errorMessage.value = ''
@@ -156,7 +165,7 @@ const generateContent = async () => {
     const parseJsonResponse = (text) => {
       try {
         // First, try to parse as JSON directly
-        const cleanedText = text.trim().replace(/^json\s*\n/i, '');
+        const cleanedText =extractJsonFromCodeBlock(rawText);
         const parsedData = JSON.parse(cleanedText);
         
         // Validate that it's an array

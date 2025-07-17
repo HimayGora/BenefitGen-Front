@@ -23,11 +23,14 @@ const handleLogin = async () => {
     });
 
     if (response.data.status === 'ok') {
-      // ## NEW: Update the global state after successful login
-      setAuthenticated(email.value);
-      
-      // Redirect to the generator page
-      router.push('/generator');
+      const userPlan = response.data.plan || 'free';
+      setAuthenticated(email.value, userPlan);
+
+      if (userPlan === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/generator');
+      }
     }
   } catch (error) {
     console.error('Error logging in:', error);
