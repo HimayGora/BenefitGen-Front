@@ -45,17 +45,15 @@ const displayName = computed(() => {
         <div>
           <div v-if="isAuthenticated && isAdmin" class="flex items-center space-x-4">
             <span class="text-gray-300">Welcome, {{ displayName }} (Admin)</span>
-            <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">
+            <RouterLink to="/admin" class="font-medium text-white hover:text-amber-400 transition-colors">
               Admin Panel
             </RouterLink>
-
-            <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
-              Login
+            <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Go to App
             </RouterLink>
-
-            <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-              Register
-            </RouterLink>
+            <button @click="handleLogout" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg text-sm">
+              Logout
+            </button>
           </div>
 
           <div v-else-if="isAuthenticated && !isAdmin" class="flex items-center space-x-4">
@@ -85,7 +83,6 @@ const displayName = computed(() => {
 
         </div>
       </nav>
-      <p class="text-xs text-white">Auth: {{ isAuthenticated }} | Admin: {{ isAdmin }} | Email: {{ email }}</p>
     </div>
   </header>
 </template>
