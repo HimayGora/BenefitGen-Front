@@ -5,6 +5,7 @@ import router from './router'
 import App from './App.vue'
 import './style.css'
 
+axios.defaults.withCredentials = true;
 const head = createHead()
 
 createApp(App)

@@ -79,5 +79,6 @@ const displayName = computed(() => {
 
       </div>
     </nav>
+    <p class="text-xs text-white">Auth: {{ isAuthenticated }} | Admin: {{ isAdmin }} | Email: {{ email }}</p>
   </header>
 </template>
