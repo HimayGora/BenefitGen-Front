@@ -35,55 +35,57 @@ const displayName = computed(() => {
 </script>
 
 <template>
-  <header class="bg-gray-800/50 backdrop-blur-sm  max-w-5xl p-4 rounded-lg shadow-lg mb-8">
-    <nav class="flex justify-between items-center">
-      <RouterLink to="/" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors">
-        BenefitGen
-      </RouterLink>
+  <header class="w-full bg-gray-800/50 backdrop-blur-sm p-4 shadow-lg mb-8">
+    <div class="max-w-7xl mx-auto">
+      <nav class="flex justify-between items-center">
+        <RouterLink to="/" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors">
+          BenefitGen
+        </RouterLink>
 
-      <div>
-        <div v-if="isAuthenticated && isAdmin" class="flex items-center space-x-4">
-          <span class="text-gray-300">Welcome, {{ displayName }} (Admin)</span>
-          <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">
-            Admin Panel
-          </RouterLink>
+        <div>
+          <div v-if="isAuthenticated && isAdmin" class="flex items-center space-x-4">
+            <span class="text-gray-300">Welcome, {{ displayName }} (Admin)</span>
+            <RouterLink to="/admin" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">
+              Admin Panel
+            </RouterLink>
 
-          <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Login
-          </RouterLink>
+            <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Login
+            </RouterLink>
 
-          <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
-            Register
-          </RouterLink>
+            <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300">
+              Register
+            </RouterLink>
+          </div>
+
+          <div v-else-if="isAuthenticated && !isAdmin" class="flex items-center space-x-4">
+            <span class="text-gray-300">Welcome, {{ displayName }}</span>
+            <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Pricing
+            </RouterLink>
+            <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Go to App
+            </RouterLink>
+            <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
+              Logout
+            </button>
+          </div>
+
+          <div v-else class="flex items-center space-x-4">
+            <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Pricing
+            </RouterLink>
+            <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
+              Login
+            </RouterLink>
+            <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">
+              Register
+            </RouterLink>
+          </div>
+
         </div>
-
-        <div v-else-if="isAuthenticated && !isAdmin" class="flex items-center space-x-4">
-          <span class="text-gray-300">Welcome, {{ displayName }}</span>
-          <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Pricing
-          </RouterLink>
-          <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Go to App
-          </RouterLink>
-          <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
-            Logout
-          </button>
-        </div>
-
-        <div v-else class="flex items-center space-x-4">
-          <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Pricing
-          </RouterLink>
-          <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Login
-          </RouterLink>
-          <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">
-            Register
-          </RouterLink>
-        </div>
-
-      </div>
-    </nav>
-    <p class="text-xs text-white">Auth: {{ isAuthenticated }} | Admin: {{ isAdmin }} | Email: {{ email }}</p>
+      </nav>
+      <p class="text-xs text-white">Auth: {{ isAuthenticated }} | Admin: {{ isAdmin }} | Email: {{ email }}</p>
+    </div>
   </header>
 </template>
