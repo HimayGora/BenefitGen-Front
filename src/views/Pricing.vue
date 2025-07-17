@@ -126,9 +126,9 @@ const handleCheckout = async (priceId) => {
 
           <button
             v-if="plan.priceId"
-            @click="plan.cta.action"
+            @click="() => plan.cta.action(plan.priceId)"
             :disabled="loadingPriceId === plan.priceId"
-            class="mt-auto  font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 text-lg"
+            class="mt-auto font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 text-lg"
             :class="plan.isPrimary ? 'bg-amber-500 hover:bg-amber-600 text-stone-900' : 'bg-gray-700 hover:bg-gray-600 text-white'"
           >
             {{ loadingPriceId === plan.priceId ? 'Redirecting...' : plan.cta.text }}
