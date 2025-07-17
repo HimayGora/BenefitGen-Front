@@ -262,7 +262,7 @@ useHead({
       </div>
 
       <div class="mb-6">
-        <label for="features" class="block text-gray-300 text-sm font-bold mb-2">What does your product do?</label>
+        <label for="features" class="block text-gray-300 text-sm font-bold mb-2 max-w">What does your product do?</label>
         <p class="text-gray-400 text-sm mb-2">
           Paste a short feature list or a 1–2 sentence description. We'll turn it into benefit copy.
         </p>
