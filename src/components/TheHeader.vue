@@ -57,22 +57,6 @@ const displayName = computed(() => {
           </RouterLink>
         </div>
 
-        <div v-else class="flex items-center space-x-4">
-          <span class="text-gray-300">Welcome, {{ displayName }}</span>
-          
-          <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Pricing
-          </RouterLink>
-
-          <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">
-            Go to App
-          </RouterLink>
-
-          <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
-            Logout
-          </button>
-        </div>
-
         <div v-else-if="isAuthenticated" class="flex items-center space-x-4">
           <span class="text-gray-300">Welcome, {{ displayName }}</span>
           <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">
