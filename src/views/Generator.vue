@@ -134,13 +134,13 @@ function extractJsonFromCodeBlock(text) {
   return text; // fallback to original text if no code block found
 }
 
-const forceStopLoading = () => {
-  console.log('🛑 FORCE STOP: Manual loading reset')
-  isLoading.value = false
-  if (loadingTimeout.value) {
-    clearTimeout(loadingTimeout.value)
-  }
-}
+// const forceStopLoading = () => {
+//  console.log('🛑 FORCE STOP: Manual loading reset')
+//  isLoading.value = false
+// if (loadingTimeout.value) {
+//    clearTimeout(loadingTimeout.value)
+ // }
+//} 
 
 const generateContent = async () => {
   console.log('🔄 Starting generation, setting isLoading to true')
@@ -379,13 +379,13 @@ useHead({
     </form>
 
     <!-- Loading Animation -->
-    <button 
+    <!-- <button 
       v-if="isLoading" 
       @click="forceStopLoading"
       class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg ml-4"
     >
       🛑 Force Stop (Debug)
-    </button>
+    </button> -->
     <div v-if="isLoading" class="bg-gray-800 shadow-md rounded-lg mt-6">
       <LoadingAnimation />
     </div>
