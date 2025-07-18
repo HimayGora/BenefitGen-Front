@@ -143,7 +143,7 @@ const forceStopLoading = () => {
 }
 
 const generateContent = async () => {
-  onsole.log('🔄 Starting generation, setting isLoading to true')
+  console.log('🔄 Starting generation, setting isLoading to true')
   isLoading.value = true
   errorMessage.value = ''
   generatedText.value = ''
