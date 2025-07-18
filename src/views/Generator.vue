@@ -134,8 +134,16 @@ function extractJsonFromCodeBlock(text) {
   return text; // fallback to original text if no code block found
 }
 
+const forceStopLoading = () => {
+  console.log('🛑 FORCE STOP: Manual loading reset')
+  isLoading.value = false
+  if (loadingTimeout.value) {
+    clearTimeout(loadingTimeout.value)
+  }
+}
 
 const generateContent = async () => {
+  onsole.log('🔄 Starting generation, setting isLoading to true')
   isLoading.value = true
   errorMessage.value = ''
   generatedText.value = ''
@@ -263,6 +271,8 @@ const generateContent = async () => {
     // Generic error fallback
     errorMessage.value = error.response?.data?.error || 'An error occurred while generating content.'
   }
+}finally {
+  isLoading.value = false
 }
 }
 
@@ -369,6 +379,13 @@ useHead({
     </form>
 
     <!-- Loading Animation -->
+    <button 
+      v-if="isLoading" 
+      @click="forceStopLoading"
+      class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg ml-4"
+    >
+      🛑 Force Stop (Debug)
+    </button>
     <div v-if="isLoading" class="bg-gray-800 shadow-md rounded-lg mt-6">
       <LoadingAnimation />
     </div>
