@@ -165,7 +165,7 @@ const generateContent = async () => {
     const parseJsonResponse = (text) => {
       try {
         // First, try to parse as JSON directly
-        const cleanedText =extractJsonFromCodeBlock(rawText);
+        const cleanedText =extractJsonFromCodeBlock(text);
         const parsedData = JSON.parse(cleanedText);
         
         // Validate that it's an array
