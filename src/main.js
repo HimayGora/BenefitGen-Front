@@ -4,7 +4,7 @@ import { createHead } from '@vueuse/head'
 import router from './router'
 import App from './App.vue'
 import './style.css'
-import VueGtag from 'vue-gtag';
+import { VueGtag } from 'vue-gtag';
 
 const head = createHead()
 
