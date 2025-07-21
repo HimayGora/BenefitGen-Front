@@ -13,6 +13,8 @@ import Pricing from '../views/Pricing.vue';
 import PaymentSuccess from '../views/PaymentSuccess.vue';
 import PaymentCancel from '../views/PaymentCancel.vue';
 import Admin from '../views/Admin.vue';
+import TOS from '../views/TOS.vue';
+import Privacy from '../views/Privacy.vue';
 
 const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
@@ -49,6 +51,17 @@ const routes = [
     name: 'Admin',
     component: Admin,
     meta: { requiresAuth: true, requiresAdmin: true }
+  },
+  {
+    path: '/tos',
+    name: 'TOS',
+    component: TOS,
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',  
+    component: Privacy,
+
   }
 ];
 
