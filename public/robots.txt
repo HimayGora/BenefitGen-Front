@@ -1,5 +1,23 @@
-#Bots are allowed on landing page, pricing page, and case-study all other pages disallowed
+# BEGIN AI BOT PERMISSIONS
+# The following rules override the Cloudflare block for specific bots,
+# but only for the /ai/ directory.
 
+User-agent: Google-Extended
+Allow: /ai
+
+User-agent: GPTBot
+Allow: /ai
+
+User-agent: ClaudeBot
+Allow: /ai
+
+# Add any other AI bots from the Cloudflare list you want to grant access to.
+
+# END AI BOT PERMISSIONS
+
+
+#Bots are allowed on landing page, pricing page, and case-study all other pages disallowed
+# This section now applies to all other bots (like regular search engines)
 User-agent: *
 Disallow: /
 Allow: /$
