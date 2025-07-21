@@ -70,8 +70,18 @@ useHead({
       </ul>
     </section>
 
+    <section id="section-7" class="my-8">
+        <h2 class="text-xl font-semibold mb-2">7. Community Plan (Upcoming)</h2>
+        <p class="text-gray-300">
+        We plan to launch a Community Plan available only to users in the United States, excluding California.
+        This plan may collect anonymized input/output (I/O) pairs and user feedback to improve BenefitGen’s performance.
+        Use of the Community Plan will require consent to this data collection.
+        Participation is optional and subject to separate terms at launch.
+        </p>
+    </section>
+
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">7. Intellectual Property</h2>
+      <h2 class="text-xl font-semibold mb-2">8. Intellectual Property</h2>
       <ul class="list-disc list-inside space-y-1">
         <li>All software, code, trademarks, and content provided by BenefitGen remain the exclusive property of HSGCraft or its licensors.</li>
         <li>You may not copy, distribute, modify, or create derivative works without prior written consent.</li>
@@ -79,7 +89,7 @@ useHead({
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">8. Termination and Suspension</h2>
+      <h2 class="text-xl font-semibold mb-2">9. Termination and Suspension</h2>
       <ul class="list-disc list-inside space-y-1">
         <li>We reserve the right to suspend or terminate accounts violating these Terms, including PII violations or abusive behavior.</li>
         <li>Upon termination, your access to the service will cease immediately.</li>
@@ -87,24 +97,24 @@ useHead({
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">9. Limitation of Liability</h2>
+      <h2 class="text-xl font-semibold mb-2">10. Limitation of Liability</h2>
       <ul class="list-disc list-inside space-y-1">
         <li>To the fullest extent permitted by law, BenefitGen and HSGCraft are not liable for any indirect, incidental, consequential, or punitive damages arising from your use of the service.</li>
       </ul>
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">10. Governing Law</h2>
+      <h2 class="text-xl font-semibold mb-2">11. Governing Law</h2>
       <p>These Terms are governed by and construed in accordance with the laws of the State of New Jersey, USA.</p>
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">11. Changes to Terms</h2>
+      <h2 class="text-xl font-semibold mb-2">12. Changes to Terms</h2>
       <p>We may update these Terms occasionally. We will notify you of significant changes via email or on our website. Continued use after changes constitutes acceptance of the new Terms.</p>
     </section>
 
     <section>
-      <h2 class="text-xl font-semibold mb-2">12. Contact Us</h2>
+      <h2 class="text-xl font-semibold mb-2">13. Contact Us</h2>
       <p>For support or questions regarding these Terms, please contact: <a href="mailto:support@hsgcraft.com" class="text-amber-400 underline">support@hsgcraft.com</a></p>
     </section>
   </div>

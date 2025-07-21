@@ -71,18 +71,28 @@ useHead({
       </ul>
     </section>
 
+    <section id="section-8" class="my-8">
+        <h2 class="text-xl font-semibold mb-2">8. Community Plan Data Collection (Upcoming)</h2>
+        <p class="text-gray-300">
+            When the Community Plan launches, we may collect and retain anonymized I/O pairs and user feedback submitted by participants.
+            This data will not include personal identifiers and will be used solely to improve our services.
+            The Community Plan will be restricted to U.S. users (excluding California) and governed by additional terms.
+            You will be notified before activation.
+        </p>
+  </section>
+
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">8. Children’s Privacy</h2>
+      <h2 class="text-xl font-semibold mb-2">9. Children’s Privacy</h2>
       <p>BenefitGen is intended for users aged 18 and over. We do not knowingly collect data from children under 18.</p>
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">9. Changes to this Policy</h2>
+      <h2 class="text-xl font-semibold mb-2">10. Changes to this Policy</h2>
       <p>We may update this Privacy Policy periodically. We will notify you of significant changes via email or on our site. Continued use indicates acceptance.</p>
     </section>
 
     <section>
-      <h2 class="text-xl font-semibold mb-2">10. Contact Us</h2>
+      <h2 class="text-xl font-semibold mb-2">11. Contact Us</h2>
       <p>If you have questions about this Privacy Policy, please contact: <a href="mailto:support@hsgcraft.com" class="text-amber-400 underline">support@hsgcraft.com</a></p>
     </section>
   </div>
