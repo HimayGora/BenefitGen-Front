@@ -14,7 +14,7 @@ const displayName = computed(() => {
   }
   const namePart = email.value.split('@')[0];
   const dotIndex = namePart.indexOf('.');
-  const maxLength = 10; // Increased length for better display
+  const maxLength = 5; // Increased length for better display
   let finalName = '';
   if (dotIndex !== -1 && dotIndex < maxLength) {
     finalName = namePart.substring(0, dotIndex);
