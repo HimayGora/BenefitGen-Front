@@ -7,18 +7,19 @@ const { isAuthenticated } = useAuth();
 
 // SEO metadata remains optimized from our first exercise.
 useHead({
-  title: 'BenefitGen: Translate Technical Features into Stakeholder Benefits',
+  title: 'BenefitGen: Help Stakeholders Understand Technical Work',
   meta: [
     {
       name: 'description',
-      content: 'Stop struggling to explain technical features. BenefitGen instantly translates complex jargon into clear, benefit-driven messaging that resonates with any stakeholder. Try it free!',
+      content: 'BenefitGen helps technical teams frame their work in business-relevant language. Turn feature explanations into summaries stakeholders can understand. Try it free.',
     },
-    { property: 'og:title', content: 'BenefitGen: From Confusing Jargon to Clear Benefits' },
-    { property: 'og:description', content: 'Stop trying to justify technical features. Instantly create clear, persuasive messaging that gets stakeholder buy-in. See how it works' },
+    { property: 'og:title', content: 'BenefitGen: From Technical Jargon to Business Clarity' },
+    { property: 'og:description', content: 'Help your stakeholders get it. Frame your tech updates in ways that highlight business value. Start free.' },
     { property: 'og:url', content: 'https://generator.hsgportfolio.com' },
     { property: 'og:image', content: 'https://generator.hsgportfolio.com/BFG.png' },
   ],
 })
+
 </script>
 <template>
   <div class="max-w-6xl mx-auto px-4">
@@ -45,13 +46,13 @@ useHead({
         </div>
         <div class="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
           <div class="text-3xl mb-3">🎯</div>
-          <h3 class="font-bold text-lg mb-2 text-amber-400">4 Audience Types</h3>
-          <p class="text-gray-400">Executives, PMs, consumers, tech leads</p>
+          <h3 class="font-bold text-lg mb-2 text-amber-400">Audience-Specific Drafting</h3>
+          <p class="text-gray-400 text-sm">Coming soon on select plans: Tailor outputs for execs, PMs, consumers, and tech leads</p>
         </div>
         <div class="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
           <div class="text-3xl mb-3">📄</div>
-          <h3 class="font-bold text-lg mb-2 text-amber-400">Export Ready</h3>
-          <p class="text-gray-400">Word, PowerPoint, email formats</p>
+          <h3 class="font-bold text-lg mb-2 text-amber-400">Export Options (Coming Soon)</h3>
+          <p class="text-gray-400">Plan to support Word, PowerPoint, and email formats</p>
         </div>
       </div>
       
@@ -107,32 +108,32 @@ useHead({
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">📊</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">API Documentation</h3>
-          <p class="text-gray-400 text-sm">Turn endpoint specs into business capability summaries</p>
+          <p class="text-gray-400 text-sm">Summarize API functionality in a way non-technical stakeholders can grasp</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">🗄️</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Database Migrations</h3>
-          <p class="text-gray-400 text-sm">Convert schema changes into downtime & risk assessments</p>
+          <p class="text-gray-400 text-sm">Outline migration impact for stakeholders more clearly</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">🏗️</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Architecture Changes</h3>
-          <p class="text-gray-400 text-sm">Translate technical debt into business investment cases</p>
+          <p class="text-gray-400 text-sm">Frame architectural changes in terms of business goals or outcomes</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">🔧</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Feature Specifications</h3>
-          <p class="text-gray-400 text-sm">Transform code requirements into user benefit statements</p>
+          <p class="text-gray-400 text-sm">Frame feature requirements in a way that highlights user value and intent</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">🚀</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Deployment Plans</h3>
-          <p class="text-gray-400 text-sm">Convert technical rollouts into business impact timelines</p>
+          <p class="text-gray-400 text-sm">Summarize release details with potential impact, timeline, and readiness notes</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div class="text-3xl mb-3">⚠️</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Security Updates</h3>
-          <p class="text-gray-400 text-sm">Turn vulnerability reports into risk mitigation summaries</p>
+          <p class="text-gray-400 text-sm">Draft business-friendly summaries of security fixes and risk factors</p>
         </div>
       </div>
     </section>
@@ -213,37 +214,38 @@ useHead({
         <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700">
           <div class="text-4xl mb-3">📄</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Word Documents</h3>
-          <p class="text-gray-400 text-sm">Professional reports ready for executive meetings</p>
+          <p class="text-gray-400 text-sm">Available on select plans (coming soon)</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700">
           <div class="text-4xl mb-3">📊</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">PowerPoint Slides</h3>
-          <p class="text-gray-400 text-sm">Instant stakeholder presentation decks</p>
+          <p class="text-gray-400 text-sm">Available on select plans (coming soon)</p>
         </div>
         <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700">
           <div class="text-4xl mb-3">📧</div>
           <h3 class="font-bold text-lg mb-2 text-amber-400">Email Templates</h3>
-          <p class="text-gray-400 text-sm">Copy-paste ready stakeholder updates</p>
+          <p class="text-gray-400 text-sm">Available on select plans (coming soon)</p>
         </div>
       </div>
     </section>
 
     <!-- Social Proof -->
     <section class="mb-16 text-center">
-      <h2 class="text-2xl font-bold mb-6 text-white">Join 500+ Technical Teams Already Converting Their Docs</h2>
-      <div class="flex justify-center items-center space-x-8 text-gray-400">
-        <div class="text-sm">🏢 Startups to Fortune 500</div>
-        <div class="text-sm">👥 Dev Teams</div>
-        <div class="text-sm">📊 Product Managers</div>
-        <div class="text-sm">🎯 CTOs</div>
-      </div>
+      <h2 class="text-2xl font-bold mb-4 text-white">Trusted by Builders, Built for Scale</h2>
+        <div class="flex justify-center items-center space-x-8 text-gray-400">
+                <div class="text-sm">🏢 Seed-Stage to Global Engineering Orgs</div>
+                <div class="text-sm">🛠️ Builders Who Ship</div>
+                <div class="text-sm">📈 Product Owners with Deadlines</div>
+                <div class="text-sm">🧠 CTOs Who Think in Tradeoffs</div>
+        </div>
+
     </section>
 
     <!-- Final CTA Section -->
     <section class="py-16 text-center">
       <div class="bg-gray-800 rounded-2xl p-12 border border-gray-700 shadow-2xl shadow-amber-500/10">
         <h2 class="text-4xl font-bold mb-4 text-white">
-          Stop Struggling to Explain Technical Work
+          Try it free. No card required. Your first 5 conversions are on us.
         </h2>
         <p class="text-xl text-amber-400 mb-8">
           Join technical teams already converting their docs into stakeholder-ready reports
@@ -291,7 +293,7 @@ useHead({
 
     <!-- Footer -->
     <footer class="py-8 text-center text-gray-500 text-sm">
-      <p>BenefitGen - Bridge the gap between technical excellence and business understanding</p>
+      <p>BenefitGen - Helping teams turn technical work into business-aligned messaging</p>
     </footer>
   </div>
 </template>
