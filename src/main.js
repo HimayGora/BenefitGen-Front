@@ -5,7 +5,7 @@ import router from './router'
 import App from './App.vue'
 import './style.css'
 import { createGtag } from 'vue-gtag'; // Correct import for vue-gtag v3.x
-const measurementId = process.env.VUE_APP_GA_MEASUREMENT_ID
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
 console.log('GA Measurement ID:', measurementId)
 const head = createHead()
 const gtag = createGtag({
