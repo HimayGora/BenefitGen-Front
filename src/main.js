@@ -7,34 +7,24 @@ import './style.css'
 
 const head = createHead()
 
-// Manual Google Analytics implementation
+// Load Google Analytics after everything else is ready
 function initGoogleAnalytics() {
-  // Create and load the gtag script
-  const gtagScript = document.createElement('script')
-  gtagScript.async = true
-  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4WZEZQRZEE'
-  document.head.appendChild(gtagScript)
+  // Delay loading to not block initial render
+  setTimeout(() => {
+    const gtagScript = document.createElement('script')
+    gtagScript.async = true
+    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4WZEZQRZEE'
+    document.head.appendChild(gtagScript)
 
-  // Initialize dataLayer and gtag function
-  window.dataLayer = window.dataLayer || []
-  function gtag() {
-    window.dataLayer.push(arguments)
-  }
-  
-  // Make gtag globally available
-  window.gtag = gtag
-  
-  // Initialize gtag
-  gtag('js', new Date())
-  gtag('config', 'G-4WZEZQRZEE', {
-    // Optional: Add additional config
-    page_title: document.title,
-    page_location: window.location.href
-  })
-
-  console.log('Google Analytics initialized manually')
-  console.log('dataLayer:', window.dataLayer)
-  console.log('gtag function:', window.gtag)
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      window.dataLayer.push(arguments)
+    }
+    window.gtag = gtag
+    
+    gtag('js', new Date())
+    gtag('config', 'G-4WZEZQRZEE')
+  }, 1000) // Load after 1 second delay
 }
 
 // Create and mount Vue app
@@ -43,10 +33,10 @@ const app = createApp(App)
   .use(router)
   .mount('#app')
 
-// Initialize Google Analytics after app mounts
-initGoogleAnalytics()
+// Initialize Google Analytics with delay to not block page load
+setTimeout(initGoogleAnalytics, 1000)
 
-// Optional: Track route changes if you're using Vue Router
+// Track route changes
 if (router) {
   router.afterEach((to) => {
     if (window.gtag) {
