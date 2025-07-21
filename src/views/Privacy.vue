@@ -72,14 +72,14 @@ useHead({
     </section>
 
     <section id="section-8" class="my-8">
-        <h2 class="text-xl font-semibold mb-2">8. Community Plan Data Collection (Upcoming)</h2>
-        <p class="text-gray-300">
-            When the Community Plan launches, we may collect and retain anonymized I/O pairs and user feedback submitted by participants.
-            This data will not include personal identifiers and will be used solely to improve our services.
-            The Community Plan will be restricted to U.S. users (excluding California) and governed by additional terms.
-            You will be notified before activation.
-        </p>
-  </section>
+      <h2 class="text-xl font-semibold mb-2">8. Community Plan Data Collection (Upcoming)</h2>
+      <p class="text-gray-300">
+        When the Community Plan launches, we may collect and retain anonymized I/O pairs and user feedback submitted by participants.
+        This data will not include personal identifiers and will be used solely to improve our services.
+        The Community Plan will be restricted to U.S. users (excluding California) and governed by additional terms.
+        You will be notified before activation.
+      </p>
+    </section>
 
     <section class="mb-6">
       <h2 class="text-xl font-semibold mb-2">9. Children’s Privacy</h2>

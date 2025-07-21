@@ -71,13 +71,13 @@ useHead({
     </section>
 
     <section id="section-7" class="my-8">
-        <h2 class="text-xl font-semibold mb-2">7. Community Plan (Upcoming)</h2>
-        <p class="text-gray-300">
+      <h2 class="text-xl font-semibold mb-2">7. Community Plan (Upcoming)</h2>
+      <p class="text-gray-300">
         We plan to launch a Community Plan available only to users in the United States, excluding California.
         This plan may collect anonymized input/output (I/O) pairs and user feedback to improve BenefitGen’s performance.
         Use of the Community Plan will require consent to this data collection.
         Participation is optional and subject to separate terms at launch.
-        </p>
+      </p>
     </section>
 
     <section class="mb-6">
