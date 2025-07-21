@@ -15,6 +15,7 @@ import PaymentCancel from '../views/PaymentCancel.vue';
 import Admin from '../views/Admin.vue';
 import TOS from '../views/TOS.vue';
 import Privacy from '../views/Privacy.vue';
+import AIData from '../views/AIData.vue';
 
 const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
@@ -62,6 +63,11 @@ const routes = [
     name: 'Privacy',  
     component: Privacy,
 
+  },
+  {
+    path: '/ai',
+    name: 'AIData',
+    component: AIData,
   }
 ];
 

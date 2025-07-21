@@ -7,5 +7,5 @@ Allow: /case-study
 Allow: /pricing
 Allow: /tos
 Allow: /privacy
-
+Allow: /ai
 Sitemap: https://www.hsgcraft.com/sitemap.xml
