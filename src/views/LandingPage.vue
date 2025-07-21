@@ -65,7 +65,7 @@ useHead({
           >
             Start Free with 40 Cards
           </RouterLink>
-          
+          <div class="my-4"></div>
           <RouterLink 
             class="bg-amber-500 hover:bg-amber-600 text-black font-bold py-4 px-12 rounded-lg text-xl transition-colors duration-300 shadow-lg shadow-amber-500/30 inline-block"
             to="/pricing"
