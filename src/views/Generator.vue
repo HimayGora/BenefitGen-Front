@@ -6,7 +6,9 @@ import { API_ENDPOINTS } from '../utils/api'
 import { useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import LoadingAnimation from '../components/LoadingAnimation.vue';
-
+import Docxtemplater from 'docxtemplater';
+import PizZip from 'pizzip';
+import { saveAs } from 'file-saver';
 
 const features = ref(localStorage.getItem('features') || '')
 const isLoading = ref(false)
@@ -70,7 +72,7 @@ const handleInput = () => {
 const copyGeneratedText = async () => {
   try {
     await navigator.clipboard.writeText(generatedText.value)
-    // Optional: Show success message
+    
     console.log('Text copied to clipboard')
   } catch (error) {
     console.error('Failed to copy text:', error)
@@ -120,6 +122,50 @@ const resetForm = () => {
   wordCount.value = 0
   localStorage.removeItem('features')
 }
+
+const downloadAsDocx = async () => {
+  try {
+    // For a real application, you would fetch your template.docx
+    // For this example, we'll create a dummy template in memory
+    const response = await fetch('/template.docx');
+    if (!response.ok) {
+        throw new Error("Template not found");
+    }
+    const content = await response.arrayBuffer();
+
+    const zip = new PizZip(content);
+    const doc = new Docxtemplater(zip, {
+        paragraphLoop: true,
+        linebreaks: true,
+    });
+
+    // Prepare data for the template
+    const templateData = {
+        generated_text: generatedText.value,
+        benefits: generatedBenefits.value.map(b => {
+            if (typeof b === 'string') {
+                return { benefit: b, supporting_sentence: '' };
+            }
+            return {
+                benefit: b.benefit || b.title,
+                supporting_sentence: b.supporting_sentence || b.description
+            };
+        })
+    };
+
+    doc.render(templateData);
+
+    const out = doc.getZip().generate({
+        type: 'blob',
+        mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    });
+
+    saveAs(out, 'generated_benefits.docx');
+  } catch (error) {
+      console.error('Error generating DOCX:', error);
+      errorMessage.value = 'Could not generate DOCX file. Please ensure `template.docx` is in the public directory.';
+  }
+};
 
 const handleLogout = () => {
   // Add your logout logic here
@@ -336,15 +382,13 @@ useHead({
           id="features"
           rows="6"
           placeholder="e.g., Tracks employee time spent on projects vs replying to emails..."
-          class="shadow border rounded  py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+          class="shadow border rounded w-full py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
         ></textarea>
         <p v-if="userPlan === 'free'" class="text-sm mt-1 text-right text-gray-400">
           {{ wordCount }} / {{ MAX_WORDS }} words used
         </p>
-        <!-- Normal errors -->
         <p v-if="errorMessage" class="text-red-500 text-xs italic mt-2">{{ errorMessage }}</p>
 
-        <!-- PII rejection errors -->
         <p v-if="piiErrorMessage" class="text-red-500 text-xs italic mt-2">{{ piiErrorMessage }}</p>
 
 
@@ -378,74 +422,79 @@ useHead({
       </div>
     </form>
 
-    <!-- Loading Animation -->
-    <!-- <button 
-      v-if="isLoading" 
-      @click="forceStopLoading"
-      class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg ml-4"
-    >
-      🛑 Force Stop (Debug)
-    </button> -->
     <div v-if="isLoading" class="bg-gray-800 shadow-md rounded-lg mt-6">
       <LoadingAnimation />
     </div>
 
-    <!-- Results Display (only show when not loading and has results) -->
     <div v-else-if="generatedText || generatedBenefits.length > 0" class="bg-gray-800 shadow-md rounded-lg p-6 mt-6">
       <h2 class="text-xl font-bold mb-4 text-amber-400">Generated Result:</h2>
-      
-      <!-- Display for plain text (LP generator) -->
+
       <div v-if="generatedText" class="mb-4">
         <p class="text-gray-300 whitespace-pre-wrap">{{ generatedText }}</p>
-        <button
-          @click="copyGeneratedText"
-          class="mt-4 text-sm text-amber-400 hover:underline"
-        >
-          Copy to Clipboard
-        </button>
+        <div class="mt-4 space-x-4">
+          <button
+            @click="copyGeneratedText"
+            class="text-sm text-amber-400 hover:underline"
+          >
+            Copy to Clipboard
+          </button>
+          <button
+            @click="downloadAsDocx"
+            class="text-sm text-amber-400 hover:underline"
+          >
+            Download as DOCX
+          </button>
+        </div>
       </div>
-      
-      <!-- Display for JSON benefits (TB generator) -->
+
       <div v-if="generatedBenefits.length > 0" class="space-y-4">
-        <div 
-          v-for="(benefit, index) in generatedBenefits" 
+        <div
+          v-for="(benefit, index) in generatedBenefits"
           :key="index"
           class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-amber-500"
         >
-          <!-- Handle your specific JSON structure -->
           <h3 v-if="benefit.benefit" class="text-lg font-semibold text-amber-400 mb-2">
             {{ benefit.benefit }}
           </h3>
           <p v-if="benefit.supporting_sentence" class="text-gray-300 mb-2">
             {{ benefit.supporting_sentence }}
           </p>
-          
-          <!-- Fallback for other structures -->
+
           <h3 v-else-if="benefit.title" class="text-lg font-semibold text-amber-400 mb-2">
             {{ benefit.title }}
           </h3>
           <p v-if="benefit.description" class="text-gray-300 mb-2">
             {{ benefit.description }}
           </p>
-          
-          <!-- Handle case where benefit is just a string -->
+
           <p v-if="typeof benefit === 'string'" class="text-gray-300">
             {{ benefit }}
           </p>
         </div>
-        
-        <button
-          @click="copyBenefitsAsText"
-          class="mt-4 text-sm text-amber-400 hover:underline"
-        >
-          Copy All Benefits to Clipboard
-        </button>
+
+        <div class="mt-4 space-x-4">
+            <button
+              @click="copyBenefitsAsText"
+              class="text-sm text-amber-400 hover:underline"
+            >
+              Copy All Benefits to Clipboard
+            </button>
+            <button
+              @click="downloadAsDocx"
+              class="text-sm text-amber-400 hover:underline"
+            >
+              Download as DOCX
+            </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+textarea {
+  width: 100%;
+}
 textarea:disabled {
   background-color: #4b5563;
   opacity: 0.6;
