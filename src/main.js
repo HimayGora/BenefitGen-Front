@@ -11,7 +11,3 @@ createApp(App)
   .use(router)
   .use(gtag)
   .mount('#app')
-
-app.use(createGtag({
-  config: { id: import.meta.env.VITE_GA_MEASUREMENT_ID },
-}, router));
