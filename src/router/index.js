@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import axios from 'axios';
 import { API_ENDPOINTS } from '../utils/api';
+import { useAuth } from '../store/auth'; // Add this import
 
 // Adjust the import paths based on your file structure
 import LandingPage from '../views/LandingPage.vue';
@@ -60,6 +61,20 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
+
+  // Refresh auth state for specific route transitions
+  const shouldRefreshAuth = 
+    from.name === 'Login' || // Coming from login
+    (from.name === 'Generator' && to.name === 'Landing'); // Going from generator to landing
+
+  if (shouldRefreshAuth) {
+    try {
+      const { checkAuthStatus } = useAuth();
+      await checkAuthStatus();
+    } catch (error) {
+      console.log('Auth refresh failed:', error);
+    }
+  }
 
   if (requiresAuth) {
     try {
