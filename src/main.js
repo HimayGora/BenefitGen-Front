@@ -4,14 +4,15 @@ import { createHead } from '@vueuse/head'
 import router from './router'
 import App from './App.vue'
 import './style.css'
-import { VueGtag } from 'vue-gtag';
+import { createGtag } from 'vue-gtag'; // Correct import for vue-gtag v3.x
 
 const head = createHead()
+const gtag = createGtag({
+  config: { id: process.env.VUE_APP_GA_MEASUREMENT_ID }
+})
 
 createApp(App)
   .use(head)
   .use(router)
-  .use(VueGtag, {
-    config: { id: process.env.VUE_APP_GA_MEASUREMENT_ID }
-  }, router)
+  .use(gtag)
   .mount('#app')
