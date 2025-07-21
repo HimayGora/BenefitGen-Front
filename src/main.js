@@ -17,3 +17,5 @@ createApp(App)
   .use(router)
   .use(gtag)
   .mount('#app')
+
+console.log('App mounted')
