@@ -24,9 +24,21 @@ const piiUpgradeLink = ref('')
 const userPlan = ref('free') // Default plan
 const selectedGenerator = ref('lp') // Default generator for admin
 
-const MAX_WORDS = 100
+// Dynamic word limits based on plan
+const getMaxWords = computed(() => {
+  switch(userPlan.value) {
+    case 'admin':
+      return 10000
+    case 'pro':
+      return 1000
+    case 'free':
+    default:
+      return 100
+  }
+})
+
 const wordCount = ref(0)
-const remainingWords = computed(() => MAX_WORDS - wordCount.value)  
+const remainingWords = computed(() => getMaxWords.value - wordCount.value)  
 
 function containsPII(text) {
   // Basic example: detects emails, phone numbers, SSNs (simple patterns)
@@ -58,9 +70,10 @@ const handleInput = () => {
     return
   }
 
-  if (userPlan.value === 'free' && wordCount.value > MAX_WORDS) {
-    features.value = words.slice(0, MAX_WORDS).join(' ')
-    wordCount.value = MAX_WORDS
+  // Apply word limit based on user plan
+  if (wordCount.value > getMaxWords.value) {
+    features.value = words.slice(0, getMaxWords.value).join(' ')
+    wordCount.value = getMaxWords.value
   }
 
   localStorage.setItem('features', features.value)
@@ -121,6 +134,20 @@ const resetForm = () => {
   errorMessage.value = ''
   wordCount.value = 0
   localStorage.removeItem('features')
+}
+
+// Check if user can download (pro or admin plans only)
+const canDownload = computed(() => {
+  return userPlan.value === 'pro' || userPlan.value === 'admin'
+})
+
+const handleDownloadAttempt = () => {
+  if (canDownload.value) {
+    downloadAsDocx()
+  } else {
+    // Redirect to pricing page for upgrade
+    router.push(UPGRADE_URL)
+  }
 }
 
 const downloadAsDocx = async () => {
@@ -349,7 +376,20 @@ useHead({
 <template>
   <div class="w-full max-w-4xl px-4">
     <div class="flex justify-between items-center mb-6">
-      <h1 class="text-3xl font-bold text-amber-400">Benefit Copy Generator</h1>
+      <div>
+        <h1 class="text-3xl font-bold text-amber-400">Benefit Copy Generator</h1>
+        <!-- Plan badge -->
+        <div class="mt-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                :class="{
+                  'bg-gray-100 text-gray-800': userPlan === 'free',
+                  'bg-amber-100 text-amber-800': userPlan === 'pro',
+                  'bg-purple-100 text-purple-800': userPlan === 'admin'
+                }">
+            {{ userPlan.charAt(0).toUpperCase() + userPlan.slice(1) }} Plan
+          </span>
+        </div>
+      </div>
       <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors duration-300">
         Logout
       </button>
@@ -384,13 +424,17 @@ useHead({
           placeholder="e.g., Tracks employee time spent on projects vs replying to emails..."
           class="shadow border rounded w-full py-2 px-3 bg-gray-700 text-gray-200 border-gray-600 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
         ></textarea>
-        <p v-if="userPlan === 'free'" class="text-sm mt-1 text-right text-gray-400">
-          {{ wordCount }} / {{ MAX_WORDS }} words used
-        </p>
+        <div class="flex justify-between items-center mt-1">
+          <p class="text-sm text-gray-400">
+            {{ wordCount }} / {{ getMaxWords }} words used
+          </p>
+          <p v-if="userPlan === 'free'" class="text-xs text-amber-400">
+            <RouterLink :to="UPGRADE_URL" class="underline">Upgrade to Pro</RouterLink> for {{ 1000 - getMaxWords }} more words
+          </p>
+        </div>
         <p v-if="errorMessage" class="text-red-500 text-xs italic mt-2">{{ errorMessage }}</p>
 
         <p v-if="piiErrorMessage" class="text-red-500 text-xs italic mt-2">{{ piiErrorMessage }}</p>
-
 
         <RouterLink
           v-if="piiUpgradeLink"
@@ -439,10 +483,21 @@ useHead({
             Copy to Clipboard
           </button>
           <button
+            v-if="canDownload"
             @click="downloadAsDocx"
             class="text-sm text-amber-400 hover:underline"
           >
             Download as DOCX
+          </button>
+          <button
+            v-else
+            @click="handleDownloadAttempt"
+            class="text-sm text-gray-400 hover:text-amber-400 hover:underline relative group"
+          >
+            Download as DOCX
+            <span class="absolute bottom-full left-0 mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              Upgrade to Pro to download
+            </span>
           </button>
         </div>
       </div>
@@ -480,10 +535,21 @@ useHead({
               Copy All Benefits to Clipboard
             </button>
             <button
+              v-if="canDownload"
               @click="downloadAsDocx"
               class="text-sm text-amber-400 hover:underline"
             >
               Download as DOCX
+            </button>
+            <button
+              v-else
+              @click="handleDownloadAttempt"
+              class="text-sm text-gray-400 hover:text-amber-400 hover:underline relative group"
+            >
+              Download as DOCX
+              <span class="absolute bottom-full left-0 mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                Upgrade to Pro to download
+              </span>
             </button>
         </div>
       </div>
