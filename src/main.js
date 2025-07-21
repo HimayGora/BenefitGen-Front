@@ -11,7 +11,7 @@ const gtag = createGtag({
     id: 'G-4WZEZQRZEE'
   }
 })
-
+console.log('Gtag instance created:', gtag)
 createApp(App)
   .use(head)
   .use(router)
