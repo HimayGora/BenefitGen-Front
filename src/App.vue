@@ -18,19 +18,34 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="!isReady" class="flex flex-col items-center min-h-screen pt-8">
-    <AppSkeleton />
-  </div>
+  <div class="flex flex-col min-h-screen">
 
-  <Transition name="fade">
-    <div v-if="isReady" class="flex flex-col items-center min-h-screen pt-8">
-      <TheHeader />
-      <main class="">
-        <RouterView />
-      </main>
-    </div>
-  </Transition>
+    <!-- Loading skeleton -->
+    <div v-if="!isReady" class="flex-grow flex flex-col items-center justify-center pt-8">
+      <AppSkeleton />
+    <!-- Main app content -->
+    </div >
+    
+      <Transition name="fade">
+        <div v-if="isReady" class="flex-grow flex flex-col items-center pt-8">
+          <TheHeader />
+          <main class="flex-grow w-full max-w-6xl px-4">
+            <RouterView />
+          </main>
+        </div>
+      </Transition>
+
+    <!-- Footer always visible -->
+    <footer class="py-4 text-center text-gray-400 text-sm border-t border-gray-700 mt-auto">
+      <a href="/tos" class="mx-3 hover:text-amber-400">Terms of Service</a>
+      <a href="/privacy" class="mx-3 hover:text-amber-400">Privacy Policy</a>
+      <a href="mailto:support@hsgcraft.com" class="mx-3 hover:text-amber-400">Contact</a>
+      <p class="mt-2">&copy; 2025 HSGCraft</p>
+    </footer>
+
+  </div>
 </template>
+
 
 <style>
 /* Transition styles for the fade effect */
