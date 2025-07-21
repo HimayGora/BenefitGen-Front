@@ -4,18 +4,56 @@ import { createHead } from '@vueuse/head'
 import router from './router'
 import App from './App.vue'
 import './style.css'
-import { createGtag } from 'vue-gtag'; // Correct import for vue-gtag v3.x
+
 const head = createHead()
-const gtag = createGtag({
-  config: {
-    id: 'G-4WZEZQRZEE'
+
+// Manual Google Analytics implementation
+function initGoogleAnalytics() {
+  // Create and load the gtag script
+  const gtagScript = document.createElement('script')
+  gtagScript.async = true
+  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4WZEZQRZEE'
+  document.head.appendChild(gtagScript)
+
+  // Initialize dataLayer and gtag function
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    window.dataLayer.push(arguments)
   }
-})
-console.log('Gtag instance created:', gtag)
-createApp(App)
+  
+  // Make gtag globally available
+  window.gtag = gtag
+  
+  // Initialize gtag
+  gtag('js', new Date())
+  gtag('config', 'G-4WZEZQRZEE', {
+    // Optional: Add additional config
+    page_title: document.title,
+    page_location: window.location.href
+  })
+
+  console.log('Google Analytics initialized manually')
+  console.log('dataLayer:', window.dataLayer)
+  console.log('gtag function:', window.gtag)
+}
+
+// Create and mount Vue app
+const app = createApp(App)
   .use(head)
   .use(router)
-  .use(gtag)
   .mount('#app')
 
-console.log('App mounted')
+// Initialize Google Analytics after app mounts
+initGoogleAnalytics()
+
+// Optional: Track route changes if you're using Vue Router
+if (router) {
+  router.afterEach((to) => {
+    if (window.gtag) {
+      window.gtag('config', 'G-4WZEZQRZEE', {
+        page_path: to.path,
+        page_title: to.name || document.title
+      })
+    }
+  })
+}
