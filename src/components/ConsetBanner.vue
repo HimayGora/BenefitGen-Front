@@ -11,7 +11,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-const showBanner = ref(false);
+const showBanner = ref(true);
 
 // Helper function to set a cookie
 const setCookie = (name, value, days) => {

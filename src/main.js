@@ -45,11 +45,12 @@ const app = createApp(App)
   .mount('#app')
 
 // Load GTM after delay to avoid blocking first paint
+/** 
 setTimeout(() => {
   initGTM()
   injectNoScript()
 }, 1000)
-
+*/
 // Track SPA pageviews
 router.afterEach((to) => {
   if (window.dataLayer) {

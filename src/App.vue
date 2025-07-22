@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue';
 import { useAuth } from './store/auth';
 import TheHeader from './components/TheHeader.vue';
-import AppSkeleton from './components/AppSkeleton.vue'; // Import the new skeleton
+import AppSkeleton from './components/AppSkeleton.vue'; 
+import ConsentBanner from './components/ConsentBanner.vue'; 
 
 const { checkAuthStatus } = useAuth();
 const isReady = ref(false);
@@ -36,6 +37,7 @@ onMounted(async () => {
       </Transition>
 
     <!-- Footer always visible -->
+    <ConsentBanner /> 
     <footer class="py-4 text-center text-gray-400 text-sm border-t border-gray-700 mt-auto">
       <a href="/tos" class="mx-3 hover:text-amber-400">Terms of Service</a>
       <a href="/privacy" class="mx-3 hover:text-amber-400">Privacy Policy</a>
