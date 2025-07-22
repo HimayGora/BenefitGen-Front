@@ -7,13 +7,25 @@ import './style.css'
 
 const head = createHead()
 
+// --- THIS FUNCTION IS UPDATED ---
 function initGTM() {
+  // 1. Initialize dataLayer and the gtag helper function.
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // 2. Set the default consent state to 'denied' BEFORE loading GTM.
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  // 3. Now, load the GTM script as you were before.
   const gtmScript = document.createElement('script')
   gtmScript.async = true
   gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-59737C95'
   document.head.appendChild(gtmScript)
 
-  window.dataLayer = window.dataLayer || []
+  // This original gtm.js event is still fine to keep.
   window.dataLayer.push({
     'gtm.start': new Date().getTime(),
     event: 'gtm.js'
