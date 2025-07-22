@@ -7,24 +7,28 @@ import './style.css'
 
 const head = createHead()
 
-// Load Google Analytics after everything else is ready
-function initGoogleAnalytics() {
-  // Delay loading to not block initial render
+// Load Google Tag Manager (GTM)
+function initGTM() {
   setTimeout(() => {
-    const gtagScript = document.createElement('script')
-    gtagScript.async = true
-    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4WZEZQRZEE'
-    document.head.appendChild(gtagScript)
+    const gtmScript = document.createElement('script')
+    gtmScript.async = true
+    gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-59737C95'
+    document.head.appendChild(gtmScript)
 
     window.dataLayer = window.dataLayer || []
-    function gtag() {
-      window.dataLayer.push(arguments)
-    }
-    window.gtag = gtag
-    
-    gtag('js', new Date())
-    gtag('config', 'G-4WZEZQRZEE')
-  }, 1000) // Load after 1 second delay
+    window.dataLayer.push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    })
+  }, 1000)
+}
+
+// Inject GTM <noscript> fallback into body (optional but recommended)
+function injectNoScript() {
+  const noscript = document.createElement('noscript')
+  noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59737C95"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+  document.body.appendChild(noscript)
 }
 
 // Create and mount Vue app
@@ -33,15 +37,19 @@ const app = createApp(App)
   .use(router)
   .mount('#app')
 
-// Initialize Google Analytics with delay to not block page load
-setTimeout(initGoogleAnalytics, 1000)
+// Initialize GTM after delay
+setTimeout(() => {
+  initGTM()
+  injectNoScript()
+}, 1000)
 
-// Track route changes
+// Optional: Push route changes to dataLayer for pageview tracking
 if (router) {
   router.afterEach((to) => {
-    if (window.gtag) {
-      window.gtag('config', 'G-4WZEZQRZEE', {
-        page_path: to.path,
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'pageview',
+        page_path: to.fullPath,
         page_title: to.name || document.title
       })
     }
