@@ -79,27 +79,42 @@ const closeMobileMenu = () => {
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div v-if="isMobileMenuOpen" class="md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-20 flex flex-col items-center justify-center space-y-8">
-        <!-- Admin Links -->
-        <template v-if="isAuthenticated && isAdmin">
-            <span class="text-2xl text-gray-300">Welcome, {{ displayName }}</span>
-            <RouterLink to="/admin" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Admin Panel</RouterLink>
-            <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
-            <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
-        </template>
-        <!-- Regular User Links -->
-        <template v-else-if="isAuthenticated && !isAdmin">
-            <span class="text-2xl text-gray-300">Welcome, {{ displayName }}</span>
-            <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
-            <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
-            <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
-        </template>
-        <!-- Guest Links -->
-        <template v-else>
-            <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
-            <RouterLink to="/login" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Login</RouterLink>
-            <RouterLink to="/register" @click="closeMobileMenu" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Register</RouterLink>
-        </template>
+    <div
+      v-if="isMobileMenuOpen"
+      class="md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8 px-4 overflow-y-auto"
+    >
+      <!-- Admin Links -->
+      <template v-if="isAuthenticated && isAdmin">
+        <span class="text-2xl text-gray-300 text-center">Welcome, {{ displayName }}</span>
+        <RouterLink to="/admin" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Admin Panel</RouterLink>
+        <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
+        <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
+      </template>
+
+      <!-- Regular User Links -->
+      <template v-else-if="isAuthenticated && !isAdmin">
+        <span class="text-2xl text-gray-300 text-center">Welcome, {{ displayName }}</span>
+        <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
+        <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
+        <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
+      </template>
+
+      <!-- Guest Links -->
+      <template v-else>
+        <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
+        <RouterLink to="/login" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Login</RouterLink>
+        <RouterLink to="/register" @click="closeMobileMenu" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Register</RouterLink>
+      </template>
     </div>
+
   </header>
 </template>
+
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+</style>

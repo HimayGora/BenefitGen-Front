@@ -30,10 +30,30 @@ const plans = ref([
       '40 Generations per month',
       '100 Word max input'
     ],
+    
     cta: {
       text: 'Start for Free',
       action: () => router.push('/register'), // Action for non-authed users
       authedAction: () => router.push('/generator'), // Action for authed users
+    },
+    isPrimary: false,
+  },
+  {
+    name: 'Community',
+    price: '$0',
+    priceId: null, // No Stripe ID, free plan
+    description: 'Free plan with higher quotas in exchange for providing data and feedback.',
+    features: [
+      '20 Generations per day',
+      '200 Generations per month',
+      '100 Word max input',
+      'Contribute Input/Output pairs & feedback',
+      'Help improve the service with your data'
+    ],
+    cta: {
+      text: 'Join Community',
+      action: () => router.push('/register'),
+      authedAction: () => router.push('/community'),
     },
     isPrimary: false,
   },

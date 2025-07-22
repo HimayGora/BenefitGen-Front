@@ -5,22 +5,21 @@ import { useAuth } from '../store/auth';
 
 const { isAuthenticated } = useAuth();
 
-// SEO metadata remains optimized from our first exercise.
 useHead({
-  title: 'BenefitGen: Help Stakeholders Understand Technical Work',
-  meta: [
-    {
-      name: 'description',
-      content: 'BenefitGen helps technical teams frame their work in business-relevant language. Turn feature explanations into summaries stakeholders can understand. Try it free.',
-    },
-    { property: 'og:title', content: 'BenefitGen: From Technical Jargon to Business Clarity' },
-    { property: 'og:description', content: 'Help your stakeholders get it. Frame your tech updates in ways that highlight business value. Start free.' },
-    { property: 'og:url', content: 'https://generator.hsgportfolio.com' },
-    { property: 'og:image', content: 'https://generator.hsgportfolio.com/BFG.png' },
-  ],
+  title: 'BenefitGen: Help Stakeholders Understand Technical Work',
+  meta: [
+    {
+      name: 'description',
+      content: 'BenefitGen helps technical teams turn complex updates into business-friendly summaries. Translate APIs, migrations, and tech debt into clear stakeholder-ready outputs.',
+    },
+    { property: 'og:title', content: 'BenefitGen: From Technical Jargon to Business Clarity' },
+    { property: 'og:description', content: 'Translate engineering work into stakeholder language. Start free with 40 cards/month — no credit card needed.' },
+    { property: 'og:url', content: 'https://generator.hsgportfolio.com' },
+    { property: 'og:image', content: 'https://generator.hsgportfolio.com/BFG.png' },
+  ],
 })
-
 </script>
+
 <template>
   <div class="max-w-6xl mx-auto px-4">
     
@@ -30,41 +29,44 @@ useHead({
         FREE • 40 Cards/Month • No Credit Card Required
       </div>
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-        Paste Your <span class="text-amber-400">Technical Docs</span><br>
-        Get Executive-Ready <span class="text-amber-400">Business Reports</span>
+        Turn <span class="text-amber-400">Engineering Docs</span><br />
+        Into <span class="text-amber-400">Executive Summaries</span> in Seconds
       </h1>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-        API documentation → Business impact summary. Database migration plan → Stakeholder report. Technical debt → Executive briefing. <strong>Each card gives you 3 stakeholder-ready outputs from a single input.</strong>
+        Stop rewriting the same update for every audience. Paste your work — get 3 clear, stakeholder-ready outputs. Technical work deserves better business communication.
       </p>
       
       <!-- Value Props -->
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
         <div class="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
           <div class="text-3xl mb-3">⚡</div>
-          <h3 class="font-bold text-lg mb-2 text-amber-400">Instant Multi-Output Cards</h3>
-          <p class="text-gray-400">One input → Three stakeholder-ready summaries in seconds</p>
+          <h3 class="font-bold text-lg mb-2 text-amber-400">3-in-1 Output</h3>
+          <p class="text-gray-400">One card gives you 3 summaries — exec, product, and team.</p>
         </div>
         <div class="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
           <div class="text-3xl mb-3">🎯</div>
-          <h3 class="font-bold text-lg mb-2 text-amber-400">Audience-Specific Drafting</h3>
-          <p class="text-gray-400 text-sm">Coming soon on select plans: Tailor outputs for execs, PMs, consumers, and tech leads</p>
+          <h3 class="font-bold text-lg mb-2 text-amber-400">Stakeholder Alignment</h3>
+          <p class="text-gray-400 text-sm">Bridge the gap with messaging tailored to each business role.</p>
         </div>
         <div class="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
           <div class="text-3xl mb-3">📄</div>
-          <h3 class="font-bold text-lg mb-2 text-amber-400">Export Options (Coming Soon)</h3>
-          <p class="text-gray-400">Plan to support Word, PowerPoint, and email formats</p>
+          <h3 class="font-bold text-lg mb-2 text-amber-400">Ready to Export</h3>
+          <p class="text-gray-400">Word, PowerPoint, and email formats — coming soon to select plans.</p>
         </div>
       </div>
       
       <!-- Main CTA -->
       <div class="mb-12">
-        <div class="" v-if="!isAuthenticated">
+        <div v-if="!isAuthenticated">
           <RouterLink
             to="/register"
             class="bg-amber-500 hover:bg-amber-600 text-black font-bold py-4 px-12 rounded-lg text-xl transition-colors duration-300 shadow-lg shadow-amber-500/30 inline-block"
           >
             Start Free with 40 Cards
           </RouterLink>
+          <p class="text-gray-400 mt-4">
+            No card needed • 3 summaries per input • 40 cards/month
+          </p>
         </div>
         <RouterLink
           v-else
@@ -73,7 +75,6 @@ useHead({
         >
           Go to Generator
         </RouterLink>
-        <p class="text-gray-400 mt-4" v-if="!isAuthenticated">40 free cards/month • No credit card required • Each card includes 3 stakeholder-ready summaries</p>
       </div>
     </section>
 
@@ -91,27 +92,25 @@ useHead({
           <div>
             <h3 class="text-xl font-semibold mb-4 text-green-400">What They Need to Hear</h3>
             <div class="bg-gray-800 p-4 rounded-lg text-sm text-gray-300">
-              "Delivered secure user login system that handles 10x more customers without crashes, saving $50K annually in server costs while improving user experience."
+              "Launched a scalable, secure system that supports 10x more users and saves $50K in infrastructure — improving customer experience and uptime."
             </div>
           </div>
         </div>
         <div class="h-1 bg-gradient-to-r from-red-500 to-green-500 my-6 rounded"></div>
         <p class="text-center text-gray-300 text-lg">
-          You spend hours rewriting technical updates for business stakeholders. BenefitGen gives you 3 summaries per card — in seconds.
+          You spend hours rewriting technical updates for business folks. BenefitGen automates that — and gives you 3 useful outputs from each card.
         </p>
       </div>
     </section>
 
-    <!-- Use Cases and other sections remain unchanged unless you want to update those too -->
-    
     <!-- Final CTA Section -->
     <section class="py-16 text-center">
       <div class="bg-gray-800 rounded-2xl p-12 border border-gray-700 shadow-2xl shadow-amber-500/10">
         <h2 class="text-4xl font-bold mb-4 text-white">
-          Try it free. No card required. Get 40 cards/month — each with 3 tailored outputs.
+          Built for Engineers. Loved by Stakeholders.
         </h2>
         <p class="text-xl text-amber-400 mb-8">
-          Join technical teams already converting their docs into stakeholder-ready reports
+          Start free — 3 outputs per card, 40 cards per month, no credit card required.
         </p>
         
         <div v-if="!isAuthenticated" class="space-y-6">
@@ -122,7 +121,7 @@ useHead({
             >
               Start Free with 40 Cards
             </RouterLink>
-            <p class="text-gray-400">40 cards/month • 100 input limit • Each card includes 3 audience-ready summaries</p>
+            <p class="text-gray-400">40 cards/month • 100 input character limit • Each card generates 3 summaries</p>
           </div>
           
           <div class="border-t border-gray-600 pt-6">
@@ -136,13 +135,13 @@ useHead({
           </div>
           
           <div class="text-xs text-gray-500 pt-4">
-            <p>Upgrade anytime: Unlimited cards • All export formats • Priority support - $35/month</p>
+            <p>Upgrade anytime: Pro ($35/mo) includes higher quotas, export support, and priority generation.</p>
           </div>
         </div>
 
         <div v-else class="space-y-4">
           <p class="text-blue-300 text-lg">
-            💡 You're ready to go. You've got 40 cards/month — each with 3 stakeholder-ready outputs.
+            💡 You’re set! 40 cards/month — each generates 3 polished outputs. Ready when you are.
           </p>
           <RouterLink
             to="/generator"
@@ -155,7 +154,6 @@ useHead({
     </section>
   </div>
 </template>
-
 
 <style scoped>
 .shadow-lg {
