@@ -5,31 +5,37 @@ import router from './router'
 import App from './App.vue'
 import './style.css'
 
+// 1. Define dataLayer and gtag globally and immediately.
+// This makes it available to your ConsentBanner component right away.
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+
 const head = createHead()
 
-// --- THIS FUNCTION IS UPDATED ---
 function initGTM() {
-  // 1. Initialize dataLayer and the gtag helper function.
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  // Check if GTM is already initialized to prevent multiple loads
+  if (window.gtmInitialized) {
+    return;
+  }
 
-  // 2. Set the default consent state to 'denied' BEFORE loading GTM.
-  gtag('consent', 'default', {
+  // 2. Use the global gtag function to set the default consent state.
+  window.gtag('consent', 'default', {
     'ad_storage': 'denied',
     'analytics_storage': 'denied'
   });
 
-  // 3. Now, load the GTM script as you were before.
+  // 3. Load the actual GTM script. This is the part that's delayed.
   const gtmScript = document.createElement('script')
   gtmScript.async = true
   gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-59737C95'
   document.head.appendChild(gtmScript)
 
-  // This original gtm.js event is still fine to keep.
   window.dataLayer.push({
     'gtm.start': new Date().getTime(),
     event: 'gtm.js'
   })
+
+  window.gtmInitialized = true;
 }
 
 function injectNoScript() {
@@ -44,15 +50,16 @@ const app = createApp(App)
   .use(router)
   .mount('#app')
 
-// Load GTM after delay to avoid blocking first paint
-/** 
+// 4. Use your original strategy to delay loading GTM and not block the app.
 setTimeout(() => {
   initGTM()
   injectNoScript()
-}, 1000)
-*/
+}, 1500); // Using 1.5 seconds as an example delay
+
 // Track SPA pageviews
 router.afterEach((to) => {
+  // We check for dataLayer here because the user might deny consent,
+  // but we still want to track pageviews for SPA navigation.
   if (window.dataLayer) {
     window.dataLayer.push({
       event: 'pageview',
