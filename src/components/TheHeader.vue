@@ -81,7 +81,7 @@ const closeMobileMenu = () => {
     <!-- Mobile Menu Overlay -->
     <div
       v-if="isMobileMenuOpen"
-      class="md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8 px-4 overflow-y-auto"
+      class="md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-start space-y-8 px-4 overflow-y-auto pt-12 pb-12"
     >
       <!-- Admin Links -->
       <template v-if="isAuthenticated && isAdmin">
