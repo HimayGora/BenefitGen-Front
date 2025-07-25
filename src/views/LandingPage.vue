@@ -2,7 +2,6 @@
 import { useHead } from '@vueuse/head'
 import { RouterLink } from 'vue-router';
 import { useAuth } from '../store/auth';
-
 const { isAuthenticated } = useAuth();
 
 useHead({
@@ -12,10 +11,25 @@ useHead({
       name: 'description',
       content: 'BenefitGen helps technical teams turn complex updates into business-friendly summaries. Translate APIs, migrations, and tech debt into clear stakeholder-ready outputs.',
     },
+    { property: 'og:type', content: 'website' },
     { property: 'og:title', content: 'BenefitGen: From Technical Jargon to Business Clarity' },
     { property: 'og:description', content: 'Translate engineering work into stakeholder language. Start free with 40 cards/month — no credit card needed.' },
-    { property: 'og:url', content: 'https://generator.hsgportfolio.com' },
-    { property: 'og:image', content: 'https://generator.hsgportfolio.com/BFG.png' },
+    { property: 'og:url', content: 'https://www.hsgcraft.com' },
+    { property: 'og:image', content: 'https://www.hsgcraft.com/logo_txt.png' }, // Changed from BFG.png
+    // Twitter Cards
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'BenefitGen: From Technical Jargon to Business Clarity' },
+    { name: 'twitter:description', content: 'Translate engineering work into stakeholder language. Start free with 40 cards/month.' },
+    { name: 'twitter:image', content: 'https://www.hsgcraft.com/logo_txt.png' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.hsgcraft.com' }, // Added www for consistency
+    { rel:"apple-touch-icon", sizes:"180x180", href:"/apple-touch-icon.png"},
+    { rel:"icon", type:"image/png", sizes:"32x32", href:"/favicon-32x32.png"},
+    { rel:"icon", type:"image/png", sizes:"16x16", href:"/favicon-16x16.png"},
+    { rel:"manifest", href:"/site.webmanifest"},
+    { rel:"mask-icon", href:"/safari-pinned-tab.svg", color:"#f39c12"}, // Changed to your orange color
+    { rel:"shortcut icon", href:"/favicon.ico"},
   ],
 })
 </script>
