@@ -47,6 +47,7 @@ const closeMobileMenu = () => {
           <!-- Admin Links -->
           <template v-if="isAuthenticated && isAdmin">
             <span class="text-gray-300">Welcome, {{ displayName }} (Admin)</span>
+            <a href="/blog/" class="font-medium text-white hover:text-amber-400 transition-colors">Blog</a>
             <RouterLink to="/admin" class="font-medium text-white hover:text-amber-400 transition-colors">Admin Panel</RouterLink>
             <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">Go to App</RouterLink>
             <button @click="handleLogout" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg text-sm">Logout</button>
@@ -54,12 +55,14 @@ const closeMobileMenu = () => {
           <!-- Regular User Links -->
           <template v-else-if="isAuthenticated && !isAdmin">
             <span class="text-gray-300">Welcome, {{ displayName }}</span>
+            <a href="/blog/" class="font-medium text-white hover:text-amber-400 transition-colors">Blog</a>
             <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">Pricing</RouterLink>
             <RouterLink to="/generator" class="font-medium text-white hover:text-amber-400 transition-colors">Go to App</RouterLink>
             <button @click="handleLogout" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg text-sm">Logout</button>
           </template>
           <!-- Guest Links -->
           <template v-else>
+            <a href="/blog/" class="font-medium text-white hover:text-amber-400 transition-colors">Blog</a>
             <RouterLink to="/pricing" class="font-medium text-white hover:text-amber-400 transition-colors">Pricing</RouterLink>
             <RouterLink to="/login" class="font-medium text-white hover:text-amber-400 transition-colors">Login</RouterLink>
             <RouterLink to="/register" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-2 px-4 rounded-lg">Register</RouterLink>
@@ -86,6 +89,7 @@ const closeMobileMenu = () => {
       <!-- Admin Links -->
       <template v-if="isAuthenticated && isAdmin">
         <span class="text-2xl text-gray-300 text-center">Welcome, {{ displayName }}</span>
+        <a href="/blog/" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Blog</a>
         <RouterLink to="/admin" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Admin Panel</RouterLink>
         <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
         <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
@@ -94,6 +98,7 @@ const closeMobileMenu = () => {
       <!-- Regular User Links -->
       <template v-else-if="isAuthenticated && !isAdmin">
         <span class="text-2xl text-gray-300 text-center">Welcome, {{ displayName }}</span>
+        <a href="/blog/" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Blog</a>
         <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
         <RouterLink to="/generator" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Go to App</RouterLink>
         <button @click="() => { handleLogout(); closeMobileMenu(); }" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg">Logout</button>
@@ -101,6 +106,7 @@ const closeMobileMenu = () => {
 
       <!-- Guest Links -->
       <template v-else>
+        <a href="/blog/" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Blog</a>
         <RouterLink to="/pricing" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Pricing</RouterLink>
         <RouterLink to="/login" @click="closeMobileMenu" class="text-2xl font-medium text-white hover:text-amber-400">Login</RouterLink>
         <RouterLink to="/register" @click="closeMobileMenu" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold py-3 px-6 rounded-lg text-lg">Register</RouterLink>
