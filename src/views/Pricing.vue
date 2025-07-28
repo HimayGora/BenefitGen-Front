@@ -48,7 +48,7 @@ const plans = ref([
       '200 Generations per month',
       '100 Word max input',
       'Contribute Input/Output pairs & feedback',
-      'Help improve the service with your data'
+      'Help improve the service with your data.'
     ],
     cta: {
       text: 'Join Community',
