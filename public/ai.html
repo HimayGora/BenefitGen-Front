@@ -37,14 +37,21 @@
         }
 
         /* Basic styling for the header nav link placeholder */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: #000; /* Assuming a dark body background */
+            color: #ccc; /* Default text color for dark theme */
+        }
         .header-nav {
             padding: 1rem;
-            background-color: #f0f0f0;
+            background-color: #1a202c; /* Tailwind gray-900 or similar dark bg */
             text-align: right;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #2d3748; /* Tailwind gray-700 or similar */
         }
         .header-nav a {
-            color: #007bff;
+            color: #f59e0b; /* Tailwind amber-400 */
             text-decoration: none;
             font-weight: bold;
         }
@@ -57,7 +64,7 @@
     <header class="header-nav">
         <nav>
             <a href="/">Back to Main Site</a>
-            </nav>
+        </nav>
     </header>
 
     <div class="max-w-4xl mx-auto px-6 py-12 text-gray-900 bg-white rounded-lg shadow-lg">
