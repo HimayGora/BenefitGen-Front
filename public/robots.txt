@@ -2,14 +2,17 @@
 User-agent: Google-Extended
 Disallow: /
 Allow: /ai
+Allow: /blog/*
 
 User-agent: GPTBot
 Disallow: /
 Allow: /ai
+Allow: /blog/*
 
 User-agent: ClaudeBot
 Disallow: /
 Allow: /ai
+Allow: /blog/*
 
 # Add any other AI bots from the Cloudflare list you want to grant access to.
 
@@ -26,4 +29,5 @@ Allow: /pricing
 Allow: /tos
 Allow: /privacy
 Allow: /ai
+Allow: /blog/*
 Sitemap: https://www.hsgcraft.com/sitemap.xml
