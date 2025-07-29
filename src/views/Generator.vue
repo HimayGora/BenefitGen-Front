@@ -501,7 +501,8 @@ useHead({
           </button>
         </div>
       </div>
-
+      <h6 class="text-sm text-gray-400 hover:text-amber-400 mb-4">BenefitGen can make mistakes so verify before use</h6>
+        
       <div v-if="generatedBenefits.length > 0" class="space-y-4">
         <div
           v-for="(benefit, index) in generatedBenefits"
