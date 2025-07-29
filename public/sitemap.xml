@@ -28,7 +28,7 @@
     <lastmod>2025-07-20</lastmod>
     <priority>0.8</priority>
   </url>
-  
+
   <!-- Blog All Posts Page -->
   <url>
     <loc>https://hsgcraft.com/blog/all-posts/</loc>
@@ -58,7 +58,11 @@
   </url>
   
   <!-- Blog Posts -->
-  <!-- Add your individual blog posts here as you create them -->
+  <url>
+    <loc>https://hsgcraft.com/blog/posts/hidden-cost-poor-communication-tech-business/</loc>
+    <lastmod>2025-01-28</lastmod>
+    <priority>0.6</priority>
+  </url>
   <!-- Example format:
   <url>
     <loc>https://hsgcraft.com/blog/posts/technical-jargon-business-value/</loc>
@@ -66,5 +70,4 @@
     <priority>0.6</priority>
   </url>
   -->
- 
 </urlset>

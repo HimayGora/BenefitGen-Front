@@ -8,7 +8,6 @@ import LandingPage from '../views/LandingPage.vue';
 import Generator from '../views/Generator.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
-import CaseStudy from '../views/CaseStudy.vue';
 import Pricing from '../views/Pricing.vue';
 import PaymentSuccess from '../views/PaymentSuccess.vue';
 import PaymentCancel from '../views/PaymentCancel.vue';
@@ -26,8 +25,6 @@ const routes = [
     component: Generator,
     meta: { requiresAuth: true }
   },
-  {path: '/case-study', name: 'CaseStudy', component: CaseStudy },
-
   {
     path: '/pricing',
     name: 'Pricing',

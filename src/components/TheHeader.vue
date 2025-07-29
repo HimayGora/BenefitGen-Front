@@ -27,7 +27,6 @@ const displayName = computed(() => {
   }
   return '';
 });
-const defaultImage = `public/LLT.png`;
 // Function to close the mobile menu, useful for navigation
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
