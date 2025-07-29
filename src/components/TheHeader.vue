@@ -3,6 +3,7 @@ import { useAuth } from '../store/auth';
 import { RouterLink } from 'vue-router';
 import { computed, ref } from 'vue';
 
+
 const { isAuthenticated, email, isAdmin, handleLogout } = useAuth();
 
 // State to control the mobile menu's visibility
@@ -26,7 +27,7 @@ const displayName = computed(() => {
   }
   return '';
 });
-
+const defaultImage = `public/LLT.png`;
 // Function to close the mobile menu, useful for navigation
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
@@ -39,6 +40,7 @@ const closeMobileMenu = () => {
       <nav class="flex justify-between items-center">
         <!-- Logo -->
         <RouterLink to="/" @click="closeMobileMenu" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors z-30">
+          <img src="/LLT.png" alt="BenefitGen Logo" class="h-8 inline-block mr-2">
           BenefitGen
         </RouterLink>
 
