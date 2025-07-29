@@ -22,12 +22,12 @@ Allow: /blog/*
 #Bots are allowed on landing page, pricing page, and case-study all other pages disallowed
 # This section now applies to all other bots (like regular search engines)
 User-agent: *
-Disallow: /
 Allow: /$
-Allow: /case-study
 Allow: /pricing
 Allow: /tos
 Allow: /privacy
 Allow: /ai
 Allow: /blog/*
+Disallow: /
+
 Sitemap: https://www.hsgcraft.com/sitemap.xml
