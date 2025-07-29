@@ -1,14 +1,14 @@
 # BEGIN AI BOT PERMISSIONS
-# The following rules override the Cloudflare block for specific bots,
-# but only for the /ai/ directory.
-
 User-agent: Google-Extended
+Disallow: /
 Allow: /ai
 
 User-agent: GPTBot
+Disallow: /
 Allow: /ai
 
 User-agent: ClaudeBot
+Disallow: /
 Allow: /ai
 
 # Add any other AI bots from the Cloudflare list you want to grant access to.
