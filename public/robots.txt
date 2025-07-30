@@ -26,6 +26,7 @@ Allow: /blog/*
 # This section now applies to all other bots (like regular search engines)
 User-agent: *
 Disallow: /
+Allow: /sitemap.xml
 Allow: /$
 Allow: /pricing
 Allow: /tos
