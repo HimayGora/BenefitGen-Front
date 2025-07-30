@@ -1,16 +1,19 @@
 # BEGIN AI BOT PERMISSIONS
 User-agent: Google-Extended
 Disallow: /
+Allow: /$
 Allow: /ai
 Allow: /blog/*
 
 User-agent: GPTBot
 Disallow: /
+Allow: /$
 Allow: /ai
 Allow: /blog/*
 
 User-agent: ClaudeBot
 Disallow: /
+Allow: /$
 Allow: /ai
 Allow: /blog/*
 
@@ -22,12 +25,13 @@ Allow: /blog/*
 #Bots are allowed on landing page, pricing page, and case-study all other pages disallowed
 # This section now applies to all other bots (like regular search engines)
 User-agent: *
+Disallow: /
 Allow: /$
 Allow: /pricing
 Allow: /tos
 Allow: /privacy
 Allow: /ai
 Allow: /blog/*
-Disallow: /
+
 
 Sitemap: https://www.hsgcraft.com/sitemap.xml
