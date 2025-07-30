@@ -15,6 +15,11 @@ useHead({
     <p class="mb-6">Effective Date: 07-21-2025</p>
 
     <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">How should BenefitGen be used?</h2>
+      <p class="text-gray-300">BenefitGen is designed for safe, non-sensitive use cases like translating technical product docs into business language for clearer stakeholder communication. It is not intended for PII, code, legal documents, or anything confidential. For more sensitive use cases, contact us to discuss custom terms or private deployments.</p>
+    </section>
+
+    <section class="mb-6">
       <h2 class="text-xl font-semibold mb-2">1. Eligibility</h2>
       <ul class="list-disc list-inside space-y-1">
         <li>You must be at least 18 years old to use BenefitGen.</li>
