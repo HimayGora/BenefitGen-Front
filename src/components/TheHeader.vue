@@ -40,7 +40,7 @@ const closeMobileMenu = () => {
         <!-- Logo -->
         <RouterLink to="/" @click="closeMobileMenu" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors z-30">
           <img src="/LLT.png" alt="BenefitGen Logo" class="h-8 inline-block mr-2">
-          BenefitGen
+          BenefitGen<sup>&trade;</sup>
         </RouterLink>
 
         <!-- Desktop Menu (Visible on Medium screens and up) -->

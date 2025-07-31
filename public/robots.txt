@@ -1,19 +1,19 @@
 # BEGIN AI BOT PERMISSIONS
 User-agent: Google-Extended
 Disallow: /
-Allow: /$
+
 Allow: /ai
 Allow: /blog/*
 
 User-agent: GPTBot
 Disallow: /
-Allow: /$
+
 Allow: /ai
 Allow: /blog/*
 
 User-agent: ClaudeBot
 Disallow: /
-Allow: /$
+
 Allow: /ai
 Allow: /blog/*
 
