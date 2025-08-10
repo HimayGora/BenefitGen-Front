@@ -42,7 +42,8 @@ onMounted(async () => {
       <a href="/tos" class="mx-3 hover:text-amber-400">Terms of Service</a>
       <a href="/privacy" class="mx-3 hover:text-amber-400">Privacy Policy</a>
       <a href="mailto:support@hsgcraft.com" class="mx-3 hover:text-amber-400">Contact</a>
-      <p class="mt-2">&copy; 2025 HSGCraft<sup>&trade;</sup></p>
+      <a href="/about.html" class="mx-3 hover:text-amber-400">About</a>
+      <p class="mt-2">&copy; 2025 BenefitGen&trade; by HSGCraft&trade;<sup>&trade;</sup></p>
     </footer>
 
   </div>
