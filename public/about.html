@@ -3,25 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About BenefitGen&trade; – Bridging Tech and Business</title>
-  <meta name="description" content="BenefitGen helps technical teams align with stakeholders to avoid acqui-hires and achieve lasting product success" />
+  <title>About BenefitGen™ — Turn Technical Work Into Business Impact</title>
+  <meta name="description" content="BenefitGen automatically translates engineering work into stakeholder-friendly summaries. Built by engineers who lived the communication problem." />
   <link rel="stylesheet" href="/assets/index-DnweOMGO.css" />
   <link rel="canonical" href="https://www.hsgcraft.com/about" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "SoftwareApplication",
     "name": "BenefitGen",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
     "url": "https://www.hsgcraft.com",
-    "logo": "https://www.hsgcraft.com/logo.png",
-    "sameAs": []
+    "description": "Automatically translate technical work into business-friendly summaries for stakeholders",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
   }
   </script>
 
   <style>
-    /* Matching your Privacy Policy styles */
-
+    /* Matching your existing styles */
     .header-nav {
       padding: 1rem;
       background-color: #1a202c;
@@ -56,9 +61,35 @@
     .mb-2 { margin-bottom: 0.5rem; }
     .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
     .font-semibold { font-weight: 600; }
-    .list-disc { list-style-type: disc; }
-    .list-inside { list-style-position: inside; }
-    .space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem; }
+
+    .feature-highlight {
+      background: linear-gradient(90deg, #374151 0%, #1f2937 100%);
+      border-left: 4px solid #f59e0b;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .metric-card {
+      background: #374151;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f59e0b;
+      display: block;
+    }
 
     ::-webkit-scrollbar {
       width: 8px;
@@ -87,6 +118,37 @@
     footer p {
       margin-top: 0.5rem;
     }
+    .input-section {
+      background: rgba(104, 120, 147, 0.5);
+      padding: 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    
+    .output-item {
+      background: rgba(31, 41, 55, 0.7);
+      padding: 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.75rem;
+      border-left: 2px solid #f59e0b;
+    }
+    
+    .output-title {
+      color: #f59e0b;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pro-note {
+      background: rgba(245, 158, 11, 0.1);
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-style: italic;
+      color: #d1d5db;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body class="bg-black">
@@ -97,39 +159,100 @@
     </nav>
   </header>
 
-  <div class="max-w-4xl mx-auto px-6 py-12 text-gray-200 bg-gray-900 rounded-lg shadow-lg overflow-y-auto max-h-[80vh]">
-    <h1 class="text-3xl font-bold mb-6 text-amber-400">BenefitGen<sup>&trade;</sup> About Us</h1>
+    <div class="max-w-4xl mx-auto px-6 py-12 text-gray-200 bg-gray-900 rounded-lg shadow-lg overflow-y-auto max-h-[80vh]">
+      <h1 class="text-3xl font-bold mb-6 text-amber-400">About BenefitGen<sup>™</sup></h1>
+
+      <section class="mb-6">
+        <p class="mb-4">
+          <strong>The Problem:</strong> Engineering teams spend hours rewriting technical updates for business stakeholders. "We migrated our API" becomes three different emails—one for executives focused on cost savings, one for product teams focused on user impact, and one for engineering teams focused on implementation details.
+        </p>
+        <p class="mb-4">
+          <strong>Our Solution:</strong> BenefitGen automatically generates stakeholder-appropriate summaries from your technical work. Paste your feature description or technical update, get three tailored outputs in seconds—no more manual translation between engineering language and business language.
+        </p>
+      </section>
+
+      <div class="feature-highlight">
+      <h3 class="font-semibold text-amber-400 mb-3">Example Pro Output</h3>
+      
+      <div class="input-section">
+        <p><strong>Input:</strong> "Implemented RESTful API with OAuth 2.0, reduced query response time by 40ms"</p>
+      </div>
+      
+      <p class="mb-3"><strong>Outputs:</strong></p>
+      
+      <div class="output-item">
+        <div class="output-title">1. Enhance User Experience</div>
+        <p>The 40ms reduction in query response time translates to smoother, faster user interactions, boosting engagement and satisfaction.</p>
+      </div>
+      
+      <div class="output-item">
+        <div class="output-title">2. Strengthen Security Posture</div>
+        <p>OAuth 2.0 integration fortifies our API against unauthorized access, mitigating the risk of data breaches and protecting sensitive customer information.</p>
+      </div>
+      
+      <div class="pro-note">
+        <strong>Pro Plan:</strong> Supports up to 8 tailored outputs from 1000-word inputs
+      </div>
+    </div>
 
     <section class="mb-6">
-      <p>
-        BenefitGen was founded to challenge a celebrated industry myth: that an acqui-hire is a win. We believe it’s often a sign of missed potential — the failure to achieve product-market fit, even with a great idea and a talented team.
+      <h2 class="text-xl font-semibold mb-4 text-amber-400">Built for every dev who's written 'migrated database' and watched eyes glaze over</h2>
+      <p class="mb-4">
+        You know the feeling. You spend weeks optimizing a critical system, then watch stakeholders' eyes glaze over when you try to explain why it matters. "Just technical work," they say, missing the point entirely.
+      </p>
+      <p class="mb-4">
+        We got tired of rewriting the same technical update three different ways - one for executives, one for product teams, one for engineering. So we built a tool that does it automatically.
+      </p>
+    </section>
+
+    <div class="metrics">
+      <div class="metric-card">
+        <span class="metric-number">3</span>
+        <p>Outputs per input</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-number">40</span>
+        <p>Free generations/month</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-number">1000</span>
+        <p>Word limit (Pro plan)</p>
+      </div>
+    </div>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-4 text-amber-400">Our Approach</h2>
+      <p class="mb-4">
+        <strong>Content-Driven Development:</strong> Our <em>Stack to Stake</em> content initiative documents real-world technical communication challenges through detailed case studies and analysis. This research directly informs our product development.
+      </p>
+      <p class="mb-4">
+        <strong>Engineering-First Design:</strong> Built by engineers, for engineers. We understand the nuances of technical work that need to be preserved while making it accessible to business stakeholders.
       </p>
       <p>
-        Too often, this happens when technical teams and business stakeholders are out of sync. Our mission is to bridge that gap. We arm technical teams with the tools, insights, and framing they need to win stakeholder buy-in, build lasting value from within, and turn great ideas into undeniable business victories.
-      </p>
-      <p>
-        This philosophy powers both our content initiative, <strong>Stack to Stake</strong>, and the <strong>BenefitGen platform</strong> itself — helping transform technical brilliance into business success.
+        <strong>Instant Translation:</strong> No more spending 45 minutes crafting three different versions of the same update. Generate stakeholder-ready summaries in seconds, not hours.
       </p>
     </section>
 
     <section class="mb-6">
-      <h2 class="text-xl font-semibold mb-2">Our Approach</h2>
+      <h2 class="text-xl font-semibold mb-4 text-amber-400">Why This Matters</h2>
+      <p class="mb-4">
+        Poor technical-business communication doesn't just frustrate engineers—it leads to underinvestment in critical infrastructure, misaligned priorities, and technical talent leaving for companies that understand their value.
+      </p>
       <p>
-        We align technical roadmaps with business outcomes, remove friction between engineering and leadership, and frame innovation in a way stakeholders can’t ignore. The result? Fewer acqui-hires, more enduring products, and stronger companies.
+        BenefitGen helps engineering teams get the recognition and resources they deserve by making their work's business impact impossible to ignore. Better communication leads to better funding, better project prioritization, and better business outcomes.
       </p>
     </section>
 
-    <section>
-      <h2 class="text-xl font-semibold mb-2">Why It Matters</h2>
-      <p>
-        In today’s competitive market, the best tech doesn’t always win — the best-communicated tech does. We make sure your ideas don’t just get built, but also get backed.
-      </p>
-    </section>
+    <div class="feature-highlight">
+      <h3 class="font-semibold text-amber-400 mb-2">Free to Start, Scales With Your Needs</h3>
+      <p><strong>Free Plan:</strong> 40 generations/month, 100-word input limit</p>
+      <p><strong>Pro Plan:</strong> 450 generations/month, 1000-word input limit, export features</p>
+    </div>
 
     <section>
-      <h2 class="text-xl font-semibold mb-2">Founder's Mission</h2>
+      <h2 class="text-xl font-semibold mb-4 text-amber-400">Get Started Today</h2>
       <p>
-        BenefitGen’s founder is a backend engineer turned SaaS builder, on a mission to prove that great ideas shouldn’t die in acqui-hires—they should scale into enduring products.
+        Start using the tool we built to solve our own communication challenges. It helped us, see if it can help you. Start free with 40 generations per month—no credit card required.
       </p>
     </section>
   </div>
@@ -139,7 +262,7 @@
     <a href="/privacy.html" class="mx-3 hover:text-amber-400">Privacy Policy</a>
     <a href="mailto:support@hsgcraft.com" class="mx-3 hover:text-amber-400">Contact</a>
     <a href="/about.html" class="mx-3 hover:text-amber-400">About</a>
-    <p class="mt-2">&copy; 2025 BenefitGen&trade; by HSGCraft&trade;<sup>&trade;</sup></p>
+    <p class="mt-2">&copy; 2025 BenefitGen™ by HSGCraft™</p>
   </footer>
 
 </body>
