@@ -12,10 +12,8 @@ Allow: /ai
 Allow: /blog/*
 
 User-agent: ClaudeBot
-Disallow: /
+allow: /
 
-Allow: /ai
-Allow: /blog/*
 
 # Add any other AI bots from the Cloudflare list you want to grant access to.
 
