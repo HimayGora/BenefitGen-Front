@@ -59,6 +59,31 @@
   
   <!-- Blog Posts -->
   <url>
+    <loc>https://www.hsgcraft.com/blog/posts/painful-prototype-product/</loc>
+    <lastmod>2025-08-28</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.hsgcraft.com/blog/posts/seven-deadly-tech-sins/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.hsgcraft.com/blog/posts/developer-experience-advocate/</loc>
+    <lastmod>2025-08-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.hsgcraft.com/blog/posts/security-debt-crisis/</loc>
+    <lastmod>2025-08-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.hsgcraft.com/blog/posts/big-tech-ai-age-legal-nightmare-of-own-making/</loc>
+    <lastmod>2025-08-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.hsgcraft.com/blog/posts/developer-experience-business-case/</loc>
     <lastmod>2025-08-10</lastmod>
     <priority>0.6</priority>
