@@ -200,11 +200,23 @@ const handleLogout = () => {
 }
 
 function extractJsonFromCodeBlock(text) {
+  // Try to extract from markdown code blocks first
   const match = text.match(/```json\s*([\s\S]*?)\s*```/);
   if (match && match[1]) {
-    return match[1];
+    return match[1].trim();
   }
-  return text; // fallback to original text if no code block found
+  
+  // Try without 'json' specifier
+  const genericMatch = text.match(/```\s*([\s\S]*?)\s*```/);
+  if (genericMatch && genericMatch[1]) {
+    const content = genericMatch[1].trim();
+    // Check if it looks like JSON
+    if (content.startsWith('[') || content.startsWith('{')) {
+      return content;
+    }
+  }
+  
+  return text.trim(); // Return trimmed original text
 }
 
 // const forceStopLoading = () => {
